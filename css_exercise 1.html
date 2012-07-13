@@ -1,3 +1,5 @@
+<html>
+<head>
 <style>
 ul {
   font-family: Georgia;
@@ -19,32 +21,45 @@ background-color:#CFCFCF;
 padding:left;
 margin-left: 2px;
 height: 37px; 
-border-style:solid;
+border-bottom-style:solid;
 border-width:1px;
 border-color:#6d6d6d;
 padding-left:10px;
 padding-right:10px;
-padding-top:20px;
+padding-top:10px;
 display: block;
 text-decoration: none;
 background: #cfcfcf;
 margin-left: 1px;
 }
-ul li a:hover { background: #8c8c8c; }
+ul li a:hover { background: white; }
 li:hover ul {
   display: block;
   position: absolute;
+  left: -40px;
+  border-top-style:none;
 }
 li:hover li {
-  width: 200px;
-  background: white;  
-  float: none;
-  font-size: 11px;
+width: 200px;
+background: white;  
+float: left;
+font-size: 11px;
+border-top-style:none;
+border-right-style:solid;
+border-width:1px;
+border-bottom-style:solid;
+border-left-style:solid;
 }
 li:hover a { background: white; }
 li:hover li a:hover { background: white; color:red; }
-
-.links{
+li:hover {
+border-top-style:solid;
+border-right-style:solid;
+border-bottom-style:none;
+border-left-style:solid;
+border-width:1px;
+}
+ul ul li a{
 display: block;
 position: relative;
 margin: 0px;
@@ -55,18 +70,21 @@ font-color: #bd0707;
 padding-top: 5px;
 padding-bottom: 5px;
 border-style:solid;
-border-width:1px;
-border-color:#6d6d6d;
-text-decoration:none;
-border-bottom: #cfcfcf;
+border-bottom:1px solid #cfcfcf;
 }
-
-
 </style>
-
-
+</head>
+<body>
 <ul id="menu">
-  <li><a href="">Home</a></li>
+  <li><a href="">Home</a>
+    <ul id="drop-down-menu">
+    <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 2</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+    </ul>
+  </li>
   <li><a href="">About Us</a>
     <ul id="drop-down-menu">
     <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
@@ -78,11 +96,11 @@ border-bottom: #cfcfcf;
   </li>
   <li><a href="">Our Services</a>
     <ul id="drop-down-menu">
-<li class="horizontal"><a class="links" href="">Example Link 1</a></li>
-<li class="horizontal"><a class="links" href="">Example Link 2 </a></li>
-<li class="horizontal"><a class="links" href="">Example Link 3</a></li>
-<li class="horizontal"><a class="links" href="">Example Link 4</a></li>
-<li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 2 </a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
     </ul>
   </li>
   <li><a href="">Our Portfolio</a>
@@ -94,5 +112,15 @@ border-bottom: #cfcfcf;
   <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
   </ul>
   </li>
-  <li><a href="">Contact Us</a></li>
+  <li><a href="">Contact Us</a>
+  <ul id="drop-down-menu">
+  <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 2</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+  </ul>
+  </li>
 </ul>
+</body>
+</html>
