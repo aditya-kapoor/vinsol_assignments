@@ -2,18 +2,12 @@
 <html>
 <head>
 <script type="text/javascript">
-function checkAll(){
+
+function uncheckAll(command){
 var x = document.getElementsByTagName("input");
 var y = x.length;
 for(i=0;i<y;++i){
-x[i].checked = true;
-}
-}
-function uncheckAll(){
-var x = document.getElementsByTagName("input");
-var y = x.length;
-for(i=0;i<y;++i){
-x[i].checked = false;
+x[i].checked = command;
 }
 }
 </script>
@@ -26,8 +20,8 @@ x[i].checked = false;
 <input type="checkbox" id="checkbox1"/>Yellow<br/>
 <input type="checkbox" id="checkbox1"/>White<br/>
 <input type="checkbox" id="checkbox1"/>Black<br/>
-<a href="#" onclick="checkAll()">Check All</a>
-<a href="#" onclick="uncheckAll()">Uncheck All </a>
+<a href="#" onclick="uncheckAll(true)">Check All</a>
+<a href="#" onclick="uncheckAll(false)">Uncheck All </a>
 </div>
 </body>
 </html>
