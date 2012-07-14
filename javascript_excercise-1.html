@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript">
+function checkAll(){
+var x = document.getElementsByTagName("input");
+var y = x.length;
+for(i=0;i<y;++i){
+x[i].checked = true;
+}
+}
+function uncheckAll(){
+var x = document.getElementsByTagName("input");
+var y = x.length;
+for(i=0;i<y;++i){
+x[i].checked = false;
+}
+}
+</script>
+</head>
+<body>
+<input type="checkbox" id="checkbox1"/>Red<br/>
+<input type="checkbox" id="checkbox1"/>Green<br/>
+<input type="checkbox" id="checkbox1"/>Blue<br/>
+<input type="checkbox" id="checkbox1"/>Yellow<br/>
+<input type="checkbox" id="checkbox1"/>White<br/>
+<input type="checkbox" id="checkbox1"/>Black<br/>
+<button type="button" onclick="checkAll()">Check All </button>
+<button type="button" onclick="uncheckAll()">Uncheck All </button>
+</body>
+</html>
