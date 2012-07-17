@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style type="text/css">
+div#reg_heading{
+text-align:center;
+width:500px;
+height:20px;
+background-color:green;
+color:white;
+}
+div#main-container{
+width:500px;
+height:500px;
+background-color:grey;
+}
+ul{
+list-style:none;
+}
+.label{
+inline-block;
+width:150px;
+text-align:left;
+float:left;
+//margin-right:20px;
+//margin-left:50px;
+font-weight:bold;
+}
+.button{
+display:block;
+background-color:green;
+color:white;
+font-weight:bold;
+}
+      </style>
+
+<script type="text/javascript">
+function validateForm(){
+var email = document.getElementById("email").value;
+var at = email.indexOf("@");
+var dot = email.lastIndexOf(".");
+var url = document.getElementById("homepage").value;
+var n = url.search("http://");
+var dot1 = url.lastIndexOf(".");
+//alert(url+n+dot);
+if(email.length == 0){
+alert("Email Should not be empty");
+return false;
+}
+if(at < 1 || dot<at+2 || dot+2>=email.length){
+alert("Email Is Not Acceptable");
+return false;
+}
+if(n < 0 || dot1+2 >= url.length){
+alert("NOt a URL");
+return false;
+}
+return true;
+}
+</script>
+   </head>
+   <body>
+<div id="main-container">
+      <div id="reg_heading"><p> Registration Form </p></div>
+      <div id="form">
+<form action="#" onsubmit="return validateForm()">
+<ul>
+<li><label class="label">Login ID</label><input type="text" name="login ID"></li>
+<li><label class="label">EMail</label><input type="text" id="email" name="email"></li>
+<li><label class="label">Name</label><input type="text" name="name"></li>
+<li><label class="label">Timezone</label>
+<select style="width:175px;margin-left:2px;">
+<option>GMT</option>
+<option>IST</option>
+</select>
+</li>
+<li><label class="label">Homepage</label><input type="text" id="homepage" name="homepage"></li>
+<li><label class="label">About Me:</label></li>
+<li>
+<textarea style="width:450px;" rows="10" cols="10" name="about Me"></textarea>
+</li>
+<li><input type="checkbox" name="notifications"><label><b>Receive Notifications of the Comment</b></label></li>
+<li><label style="font-size:10px;">You will be sent an email when someone post comments on your blog or album</label></li>
+<br /><br />
+<li><center> Your Password Will be Sent By Mail: </center></li>
+<li><center><button type="Submit" class="button" value="GO!!" />GO!!</center></li>
+</ul>
+</form>
+      </div>
+</div>
+</body>
+</html>
