@@ -38,12 +38,7 @@ font-weight:bold;
 function validateForm(){
 var inputs = document.getElementsByTagName("input");
 //alert(inputs.length);
-var textarea = document.getElementsByTagName("textarea");
-if(textarea[0].value.length == 0 || textarea[0].value.length < 50){
-   alert(textarea[0].name + " Should not be empty");
-   textarea[0].focus();
-   return false;
-}
+
 for(i=0;i<inputs.length;++i){
   if(inputs[i].value.length == 0){
      alert(inputs[i].name + " Should not be empty");
@@ -57,6 +52,12 @@ for(i=0;i<inputs.length;++i){
          return false;
              }
         }
+}
+var textarea = document.getElementsByTagName("textarea");
+if(textarea[0].value.length == 0 || textarea[0].value.length < 50){
+   alert(textarea[0].name + " Should not be empty");
+   textarea[0].focus();
+   return false;
 }
 return true;
 }
