@@ -1,0 +1,148 @@
+<html>
+ <head>
+  <title>JavaScipt At Work</title>
+  <script type="text/javascript">
+   var count=0;
+   var no_of_cells = 3; 
+   function addLinks(t){
+   // This function would create the links in the third cell of the table row
+   // The links would be displayed as (Edit/Delete)
+   var link1 = document.createElement("a");
+   var link1_text = document.createTextNode("Edit");
+   link1.setAttribute("href","#");
+   link1.setAttribute("onclick","Edit(this)");
+   id = "e-" + t.id;
+   link1.setAttribute("id",id);
+   link1.appendChild(link1_text);
+
+   var link2 = document.createElement("a");
+   var link2_text = document.createTextNode("Delete");
+   link2.setAttribute("href","#");
+   link2.setAttribute("onclick","Delete1(this)");
+   var id = "d-"+t.id;
+   link2.setAttribute("id",id);
+   link2.appendChild(link2_text);
+
+   var link3 = document.createElement("p")
+   var hash = document.createTextNode("/");
+   link3.appendChild(link1);
+   link3.appendChild(hash);
+   link3.appendChild(link2);
+   return link3;
+   }
+
+   function Edit(t){
+   //This function is called when the edit link is clicked
+   var node = t.parentNode.parentNode.parentNode;
+   var cells = node.cells;
+   var no_of_cells = node.cells.length;
+   for(i=0;i<no_of_cells-1;++i){
+   /*
+   Temporary variables are used in this loop so that we can set up the first two cells of teh table
+   If the requirement increases in the future one can easily extend the loop till the last cell which is assumed to have been kept reserved for the Links and the button
+   */
+   var temp_input= document.createElement("input");
+   var temp_value = cells[i].firstChild.innerText;
+   temp_input.setAttribute("type","text");
+   temp_input.setAttribute("value",temp_value);
+   cells[i].appendChild(temp_input);
+   cells[i].removeChild(cells[i].firstChild);
+   }
+   temp_save = document.createElement("button");
+   temp_save_text = document.createTextNode("SAVE");
+   temp_id = t.id.slice(2,t.id.length);
+   temp_save.setAttribute("id",temp_id);
+   temp_save.setAttribute('onclick','Save(this)');
+   temp_save.appendChild(temp_save_text);
+   cells[i].appendChild(temp_save);
+   cells[i].removeChild(cells[i].firstChild);
+   }
+
+ function Delete1(t){
+   // This is called when the delete link is pressed
+   var table = document.getElementById("table");
+   var rows = table.rows;
+   var number = t.id.slice(2,t.id.length);
+   rowId = "tr-"+number;
+   var x = rows[rowId].rowIndex;
+   table.deleteRow(x);
+   }
+     
+  function Save(t){
+  // This is called when we press the save button
+  var node = t.parentNode.parentNode;
+  var cells = node.cells;
+  var no_of_cells = cells.length;
+/* Assembling the First Two Cells and can be easily scalable */
+  for(i=0;i<no_of_cells - 1 ; ++i){
+    //temporary variable this is being used in the loop which can fufill the purpose of every cell of the table
+    var temp = cells[i].firstChild.value;
+    var temp_para = document.createElement("p");
+    var temp_text = document.createTextNode(temp);
+    temp_para.appendChild(temp_text);
+    cells[i].appendChild(temp_para);
+    cells[i].removeChild(cells[i].firstChild);
+   }
+
+ /* Assembling the third Cell */
+   var links = addLinks(t);
+   cells[i].appendChild(links);
+   cells[i].removeChild(cells[i].firstChild);
+   }
+  
+  function addElement(){
+   var table = document.getElementById("table");
+   var table_row = table.insertRow(-1);
+   var table_row_id = "tr-"+count;
+   
+   table_row.setAttribute("id",table_row_id);
+   var id = count.toString();
+  
+  /*Saving Last Cell for Save Button */
+   for(i=0;i<no_of_cells-1;++i){
+   var td_temp = table_row.insertCell(i);
+   var text1 = document.createElement("input");
+   text1.setAttribute("type","text");
+   text1.setAttribute("id","name");
+   //text1.setAttribute("class","table-division");
+   td_temp.appendChild(text1);
+   }
+  /* Adding Save Button Now */
+   var td3 = table_row.insertCell(i);
+   var input3 = document.createElement("button")
+   var text_button3 = document.createTextNode("SAVE");
+   input3.appendChild(text_button3);
+   input3.setAttribute("type","button");
+   //input3.setAttribute("label","Save");
+   input3.setAttribute("id",id);
+   input3.setAttribute('onclick','Save(this)');
+   td3.appendChild(input3);
+   count = count + 1;
+  }    
+  </script>
+<style type="text/css">
+.table{
+text-align:center;
+}
+.table-division-top{
+width:175px;
+font-weight:bold;
+padding:20px;
+}
+</style>
+ </head>
+ <body>
+   <div id="para" id="center">
+      <div id="table-container" align="center">
+        <table id="table" border="1" class="table">
+         <td class="table-division-top">Name</td>
+         <td class="table-division-top">Email</td>
+         <td class="table-division-top">Actions</td>
+      </table>
+      <div id="button-container" style="margin-right:432px">
+        <button type="button" onclick="addElement()"> Add A New Row </button>
+      </div>
+     </div>
+   </div>
+ </body>
+</html>
