@@ -2,16 +2,27 @@
 <head>
 <script type="text/javascript">
 var myWindow;
-function openWindow(){
-var msg = "";
-var button;
-url = prompt("Enter A URL","http://");
-  if(url.length == 0){
- alert("Empty URL Not Allowed");   
- }else{
-myWindow = window.open(url,"This is a Testing window","height=450,width=400");
-}
-}
+ function hasSpaces(string){
+   var spacePattern = /^\s+(.*?)\s+$/;
+   if(spacePattern.test(string) == true) 
+    return true;
+   else 
+    return false;
+ }
+
+ function openWindow(){
+   var msg = "";
+   var button;
+   url = prompt("Enter A URL","http://");
+   if(hasSpaces(url) == true)
+     alert("Empty URL Not Allowed");
+   if(url.length == 0){
+     alert("Empty URL Not Allowed");   
+   }else{
+     myWindow = window.open(url,"This is a Testing window","height=450,width=400");
+  }
+ }
+
 </script>
 </head>
 <body onload="openWindow()">
