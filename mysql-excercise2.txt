@@ -1,0 +1,199 @@
+Multi Brach Library
+
+1. The names of all library books published by Macmillan
+
+select title from titles  where publisher = 'Macmillan';
++----------+
+| title    |
++----------+
+| Susannah |
+| The Wife |
++----------+
+2 rows in set (0.00 sec)
+
+2. Branches that hold any books by Ann Brown (without using a nested subquery)
+
+mysql> select A1.branch
+    -> from holdings as A1 inner join titles 
+    -> on titles.title = A1.title
+    -> where titles.author = "Ann Brown";
++--------+
+| branch |
++--------+
+| B1     |
+| B3     |
+| B2     |
+| B3     |
++--------+
+4 rows in set (0.00 sec)
+
+Branch Along With the Book title
+select A1.branch, A1.title from  holdings as A1 inner join titles as A2 on A1.title = A2.title where A2.author = "Ann Brown";
++--------+----------+
+| branch | title    |
++--------+----------+
+| B1     | Susannah |
+| B3     | Susannah |
+| B2     | The Wife |
+| B3     | The Wife |
++--------+----------+
+4 rows in set (0.00 sec)
+
+3. The total number of books held at each branch
+
+select branch, sum(copies) from holdings group by branch;
++--------+-------------+
+| branch | sum(copies) |
++--------+-------------+
+| B1     |           6 |
+| B2     |           9 |
+| B3     |           9 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+4. Branches that hold any books by Ann Brown (using a nested subquery)
+
+mysql> select branch from holdings
+    -> where title in (
+    -> select title from titles 
+    -> where author="Ann Brown"
+    -> )
+    -> ;
++--------+
+| branch |
++--------+
+| B1     |
+| B2     |
+| B3     |
+| B3     |
++--------+
+4 rows in set (0.00 sec)
+
+Branch containing titles
+mysql> select branch,title from holdings 
+    -> where title in
+    -> (select title from titles 
+    -> where author = "Ann Brown"
+    -> );
++--------+----------+
+| branch | title    |
++--------+----------+
+| B1     | Susannah |
+| B2     | The Wife |
+| B3     | Susannah |
+| B3     | The Wife |
++--------+----------+
+4 rows in set (0.00 sec)
+
+Second PDF File Solutions
+
+creating tables
+create table tastes(
+    -> name varchar(40),
+    -> filling varchar(40));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> alter table tastes
+    -> add primary key(name,filling);
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tastes;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(40) | NO   | PRI |         |       |
+| filling | varchar(40) | NO   | PRI |         |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+create table locations
+    -> (lname varchar(40) primary key,
+    -> phone varchar(10),
+    -> address varchar(40));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> desc locations;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| lname   | varchar(40) | NO   | PRI | NULL    |       |
+| phone   | varchar(10) | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table sandwiches(
+    -> location varchar(40),
+    -> bread varchar(40),
+    -> filling varchar(40),
+    -> price decimal(2,2));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc sandwiches;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| location | varchar(40)  | YES  |     | NULL    |       |
+| bread    | varchar(40)  | YES  |     | NULL    |       |
+| filling  | varchar(40)  | YES  |     | NULL    |       |
+| price    | decimal(2,2) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+alter table sandwiches
+    -> add foreign key(location) references locations(lname);
+Query OK, 0 rows affected (0.29 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table sandwiches
+    -> add primary key(location,bread,filling);
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Queries
+1. places where Jones can eat (using a nested subquery)
+
+select A1.location from 
+sandwiches as A1 
+where filling in 
+(select filling from tastes where name = "Jones")
+;
+
++-----------+
+| location  |
++-----------+
+| Buttery   |
+| O'Neill's |
++-----------+
+2 rows in set (0.00 sec)
+
+2. Places where Jones can eat (without using a nested subquery)
+
+select A1.location from
+sandwiches as A1 inner join tastes
+on tastes.filling = A1.filling
+and tastes.name = "Jones";
++-----------+
+| location  |
++-----------+
+| Buttery   |
+| O'Neill's |
++-----------+
+2 rows in set (0.00 sec)
+
+3. For each location the number of people who can eat there
+
+select location, count(distinct(name)) from  tastes, sandwiches where tastes.filling = sandwiches.filling group by location;
++-----------+-----------------------+
+| location  | count(distinct(name)) |
++-----------+-----------------------+
+| Buttery   |                     3 |
+| Lincoln   |                     2 |
+| O'Neill's |                     3 |
+| Old Nag   |                     2 |
++-----------+-----------------------+
+4 rows in set (0.01 sec)
+
+
+
