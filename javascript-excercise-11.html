@@ -7,33 +7,34 @@
    function addLinks(t){
    // This function would create the links in the third cell of the table row
    // The links would be displayed as (Edit/Delete)
-   var link1 = document.createElement("a");
-   var link1_text = document.createTextNode("Edit");
-   link1.setAttribute("href","#");
-   link1.setAttribute("onclick","Edit(this)");
+   var link_edit = document.createElement("a");
+   var link_edit_text = document.createTextNode("Edit");
+   link_edit.setAttribute("href","#");
+   link_edit.setAttribute("onclick","Edit(this)");
    id = "e-" + t.id;
-   link1.setAttribute("id",id);
-   link1.appendChild(link1_text);
+   link_edit.setAttribute("id",id);
+   link_edit.appendChild(link_edit_text);
 
-   var link2 = document.createElement("a");
-   var link2_text = document.createTextNode("Delete");
-   link2.setAttribute("href","#");
-   link2.setAttribute("onclick","Delete1(this)");
+   var link_delete = document.createElement("a");
+   var link_delete_text = document.createTextNode("Delete");
+   link_delete.setAttribute("href","#");
+   link_delete.setAttribute("onclick","Delete(this)");
    var id = "d-"+t.id;
-   link2.setAttribute("id",id);
-   link2.appendChild(link2_text);
+   link_delete.setAttribute("id",id);
+   link_delete.appendChild(link_delete_text);
 
    var link3 = document.createElement("p")
    var hash = document.createTextNode("/");
-   link3.appendChild(link1);
+   link3.appendChild(link_edit);
    link3.appendChild(hash);
-   link3.appendChild(link2);
+   link3.appendChild(link_delete);
    return link3;
    }
 
    function Edit(t){
    //This function is called when the edit link is clicked
-   var node = t.parentNode.parentNode.parentNode;
+   var row_id = "tr-"+t.id.slice(2,t.id.length);
+   var node = document.getElementById(row_id);
    var cells = node.cells;
    var no_of_cells = node.cells.length;
    for(i=0;i<no_of_cells-1;++i){
@@ -58,7 +59,7 @@
    cells[i].removeChild(cells[i].firstChild);
    }
 
- function Delete1(t){
+ function Delete(t){
    // This is called when the delete link is pressed
    var table = document.getElementById("table");
    var rows = table.rows;
@@ -70,12 +71,13 @@
      
   function Save(t){
   // This is called when we press the save button
-  var node = t.parentNode.parentNode;
+  var row_id = "tr-"+t.id;
+  var node = document.getElementById(row_id);
   var cells = node.cells;
   var no_of_cells = cells.length;
-/* Assembling the First Two Cells and can be easily scalable */
+  // Assembling the First Two Cells and can be easily scalable 
   for(i=0;i<no_of_cells - 1 ; ++i){
-    //temporary variable this is being used in the loop which can fufill the purpose of every cell of the table
+  //temporary variable this is being used in the loop which can fufill the purpose of every cell of the table
     var temp = cells[i].firstChild.value;
     var temp_para = document.createElement("p");
     var temp_text = document.createTextNode(temp);
@@ -84,7 +86,7 @@
     cells[i].removeChild(cells[i].firstChild);
    }
 
- /* Assembling the third Cell */
+ // Assembling the third Cell 
    var links = addLinks(t);
    cells[i].appendChild(links);
    cells[i].removeChild(cells[i].firstChild);
