@@ -1,0 +1,2 @@
+select * from tags 
+where tag_id = 1 or tag_id=3
