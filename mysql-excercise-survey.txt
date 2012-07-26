@@ -1,0 +1,93 @@
+Campaign Excercise
+
+
+1. What all cities did people respond from?
+
+SELECT DISTINCT city
+FROM Respondents
+
+city
+Lucknow
+Chennai
+Kolkatta
+Delhi
+Mumbai
+
+2. How many people responded from each city
+
+SELECT city, COUNT( city ) 
+FROM Respondents
+GROUP BY city
+ORDER BY city
+
+
+city 	count(city)
+Chennai	42
+Delhi	40
+Kolkatta38
+Lucknow	39
+Mumbai	41
+
+3. Which city were the maximum respondents from?
+
+SELECT city
+FROM (
+SELECT city, COUNT( city ) Count
+FROM Respondents
+GROUP BY city
+) AS t
+HAVING MAX( Count )
+
+city
+Chennai
+
+4. What all email domains did people respond from ?
+
+select distinct 
+(SUBSTR(email, INSTR(email, '@') + 1, LENGTH(email) - (INSTR(email, '@') + 1))) domain
+from Respondents
+
+domain
+hotmail.com
+yahoo.com
+me.com
+gmail.com
+
+5. Which is the most popular email domain among the respondents ?
+
+select t1.* from 
+(select SUBSTR(email, INSTR(email, '@') + 1, LENGTH(email) - (INSTR(email, '@') + 1)) domain , count(email) count
+   from Respondents R
+   group by domain)as t1
+join
+(
+select max(count) count from (
+select SUBSTR(email, INSTR(email, '@') + 1, LENGTH(email) - (INSTR(email, '@') + 1)) domain , count(email) count
+   from Respondents R
+   group by domain
+) as t2
+) as t3
+on t1.count = t3.count
+
+
+OR 
+
+
+select t1.* from 
+(select SUBSTR(email, INSTR(email, '@') + 1, LENGTH(email) - (INSTR(email, '@') + 1)) domain , count(email) count
+   from Respondents R
+   group by domain)as t1
+join
+(
+select SUBSTR(email, INSTR(email, '@') + 1, LENGTH(email) - (INSTR(email, '@') + 1)) domain , count(email) count
+   from Respondents R
+   group by domain
+   order by count desc
+   limit 1
+) as t3
+on t1.count = t3.count
+
+
+domain		count 
+me.com		51
+yahoo.com	51
