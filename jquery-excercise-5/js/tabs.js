@@ -24,8 +24,8 @@
 	   $(this).siblings().attr("class","")
 	   var $id = 'div#'+$(this).text().toLowerCase();
 	   var $sibling_id = 'div#' + $(this).siblings().text().toLowerCase();
-	   $($sibling_id).attr("style","display:none")
-	   $($id).attr("style","display:block")
+	   $($sibling_id).hide()
+	   $($id).show()
 	});
      });
 });
