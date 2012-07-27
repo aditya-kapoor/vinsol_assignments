@@ -6,12 +6,12 @@ $(document).ready(function(){
   $search_text = $label.text();
   $text_field = $label.next() // $text_field = $form.find('input[name="q"]')
   $text_field.attr("value",$search_text)
-  $label.next())
+  $label.next()
 
   /*"Excercise 4.1.2"*/
   /*"Adding a class of 'hint' to the search input"*/
   $text_field.addClass("hint")
-  $label.next())
+  $label.next()
 
   /*"Excercise 4.1.3"*/
   /*"Remove the label element"*/
