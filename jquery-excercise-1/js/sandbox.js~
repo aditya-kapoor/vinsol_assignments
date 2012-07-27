@@ -1,40 +1,35 @@
 /* Selecting All the elements of Divs belonging to module class*/
 var count = 0;
 $(document).ready(function(){
-    $divs = $("div.module");
-    console.log("Excercise2.1.1")
-    console.log($divs);
+    $divs = $("div.module");    
+
+    /* Excercise 2.1.2 */
+    /*"Come up with three selectors that you could use to get the third item in the #myList unordered list. Which is the best to use? Why?"*/
+    $("ul#myList").children().eq(2)
+    $("div#main #myList").children().eq(2)
+    $("#myList").children().eq(2)
+    /*"Out of the three methods given above, the last method is slowest while the first one is fastest"*/
     
+    /*"Excercise 2.1.3"*/
+    /*"Select the label for the search input using an attribute selector"*/
+    $('label[for="q"]')
 
-    console.log("Excercise 2.1.2")
-    console.log("Come up with three selectors that you could use to get the third item in the #myList unordered list. Which is the best to use? Why?")
-    console.log($("ul#myList").children().eq(2))
-    console.log($("div#main #myList").children().eq(2))
-    console.log($("#myList").children().eq(2))
-    console.log("Out of the three methods given above, the last method is slowest while the first one is fastest");
-    
-    console.log("Excercise 2.1.3")
-    console.log("Select the label for the search input using an attribute selector");
-    console.log($('label[for="q"]'))
-
-   console.log("Excercise 2.1.4")
-   console.log("Figure out how many elements on the page are hidden")
-   console.log("The following are hidden in the body")
-   console.log($(document).find("body").find(":hidden").length)
-   console.log("The following elements are hidden inside and outside body")
-   console.log($(document).find(":hidden").length)
+   /*"Excercise 2.1.4"*/
+   /*"Figure out how many elements on the page are hidden"*/
+   $(document).find("body").find(":hidden").length // Hidden inside body
+   $(document).find(":hidden").length  //hidden throughout page
 
 
-   console.log("Excercise 2.1.5")
-   console.log("Figure out how many image elements on the page have an alt attribute.")
+   /*"Excercise 2.1.5"*/
+   /*"Figure out how many image elements on the page have an alt attribute." */
    $('img').each(function(index,element){  
        if($(element).attr("alt").length != 0) count++;
     });
-   console.log(count);
+   count;
  
-   console.log("Excercise 2.1.6")
-   console.log("Select all of the odd table rows in the table body.")
-   console.log($('table').find('tr').filter(":odd").length)
+   /*"Excercise 2.1.6"*/
+   /*"Select all of the odd table rows in the table body."*/
+   $('table').find('tr').filter(":odd").length
    
 
 }); 
