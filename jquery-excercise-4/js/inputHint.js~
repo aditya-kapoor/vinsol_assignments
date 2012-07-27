@@ -1,9 +1,9 @@
 $(document).ready(function(){
   console.log("Excercise 4.1.1")
   console.log("Set the value of the search input to the text of the label element")
-  $search_text = $label.text();
   $form = $('form#search')
   $label = $form.find('label')
+  $search_text = $label.text();
   $text_field = $label.next() // $text_field = $form.find('input[name="q"]')
   $text_field.attr("value",$search_text)
   console.log($label.next())
