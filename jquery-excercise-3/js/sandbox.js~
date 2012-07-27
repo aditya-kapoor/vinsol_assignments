@@ -20,7 +20,14 @@ $(document).ready(function(){
   last.append("<p> This is an added paragraph text </p>")
   console.log(last)
   console.log($('div.module'))
-
+  
+  console.log("Excercise 2.3.4")
+  console.log("Add another option to the select element; give the option the value 'Wednesday'")
+  var $select = $('select[name="day"]')
+  var $tuesday = $select.children().eq(2)
+  var $option = $('<option value="wednesday">Wednesday</option>')
+  $option.insertAfter($tuesday)
+  console.log($('select[name="day"]').children())
 
   console.log("Excercise 2.3.5") 
   console.log("Add a new div.module to the page after the last one; put a copy of one of the existing images inside of it.")
