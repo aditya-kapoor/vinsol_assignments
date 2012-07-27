@@ -34,7 +34,7 @@ $(document).ready(function(){
  
    console.log("Excercise 2.1.6")
    console.log("Select all of the odd table rows in the table body.")
-   
+   console.log($('table').find('tr').filter(":odd").length)
    
 
 }); 
