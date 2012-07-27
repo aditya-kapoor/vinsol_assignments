@@ -47,107 +47,71 @@ var products = [
 
 	function sortByColour(){
 	clearInterface();
-	var length = products.length;
-	var index_ascending = new Array();
-	var arr = new Array();
-	var divs = document.getElementsByName("image-grid-row");
-	for(i=0;i<length;++i) arr.push(products[i].color);
-	var imgTag;
-	var x=0;
-	var imgs_printed = 1;
-	for(i=0;i<arr.length;++i){
-	  if(arr[i] == "Red") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x].appendChild(imgTag);
-	      }
-	  if(arr[i] == "Yellow") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+1].appendChild(imgTag);
-	      }
-	  if(arr[i] == "Green") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+2].appendChild(imgTag);
-	      }
-	  if(arr[i] == "Blue") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+3].appendChild(imgTag);
-	      }
-	   }
+	var arr_Red = new Array();
+	var arr_Blue = new Array();
+	var arr_Yellow = new Array();
+	var arr_Green = new Array();
+	for(i=0;i<products.length;++i){
+	switch(products[i].color){
+	case 'Red': arr_Red.push(i+1); break;	 
+	case 'Green': arr_Green.push(i+1); break;
+	case 'Yellow': arr_Yellow.push(i+1); break;
+	case 'Blue' : arr_Blue.push(i+1); break;
+	default: alert("Error");
 	 }
+	}
+	var sortedArray = arr_Red.concat(arr_Blue).concat(arr_Yellow).concat(arr_Green);
+	createInterface(sortedArray);
+       }
 
 	function sortByBrand(){
 	clearInterface();
-	var length = products.length;
-	var index_ascending = new Array();
-	var arr = new Array();
-	var divs = document.getElementsByName("image-grid-row");
-	for(i=0;i<length;++i) arr.push(products[i].brand);
-	var imgTag;
-	var x=0;
-	var imgs_printed = 1;
-	for(i=0;i<arr.length;++i){
-	  if(arr[i] == "BRAND A") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x].appendChild(imgTag);
-	      }
-	  if(arr[i] == "BRAND B") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+1].appendChild(imgTag);
-	      }
-	  if(arr[i] == "BRAND C") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+2].appendChild(imgTag);
-	      }
-	  if(arr[i] == "BRAND D") {
-		imgTag = document.createElement("img");
-		imgTag.setAttribute("src",products[i].url);
-		imgTag.setAttribute("width","100px");
-		divs[x+3].appendChild(imgTag);
-	      }
-	   }
-	 }
+	var arr_BrandA = new Array();
+	var arr_BrandB = new Array();
+	var arr_BrandC = new Array();
+	var arr_BrandD = new Array();
+	for(i=0;i<products.length;++i){
+	switch(products[i].brand){
+	case 'BRAND A': arr_BrandA.push(i+1); break;	 
+	case 'BRAND B': arr_BrandB.push(i+1); break;
+	case 'BRAND C': arr_BrandC.push(i+1); break;
+	case 'BRAND D': arr_BrandD.push(i+1); break;
+	default: alert("Error"); break;
+	  }
+ 	 }
+	var sortedArray = arr_BrandA.concat(arr_BrandB).concat(arr_BrandC).concat(arr_BrandD);
+	createInterface(sortedArray);
+	}
 
 	function sortByAvailability(){
 	clearInterface();
 	var length = products.length;
 	var indexes = new Array();
+	var sold_out = new Array();
 	for(i=0;i<length;++i){
 	 if(products[i].sold_out == 0){
 	   indexes.push(i+1);
-	  }
+	  }else{ sold_out.push(i+1); }
 	 }
-	createInterface(indexes);
+	var sorted_array = indexes.concat(sold_out);
+	createInterface(sorted_array);
 	}
 
-	function createInterface(indexes){
+	function createInterface(sorted_array){
 	var div = document.getElementsByName("image-grid-row");
 	var div_len = div.length;
-	var indexes_len = indexes.length;
+	var sorted_array_len = sorted_array.length;
 	var i=-1;
 	while(i<div.length){
-	  for(k=0;k<indexes_len;++k){
-	    if(k%3 == 0) ++i;
-	    var imgTag = document.createElement("img");
-	    imgTag.setAttribute("src",products[indexes[k]-1].url);
-	    imgTag.setAttribute("width","100px");
-	    div[i].appendChild(imgTag);
+	  for(k=0;k<sorted_array_len;++k){
+	    if(k%4 == 0) ++i;
+	      var imgTag = document.createElement("img");
+	      imgTag.setAttribute("src",products[sorted_array[k]-1].url);
+	      imgTag.setAttribute("width","100px");
+	      div[i].appendChild(imgTag);
 	   }
 	  }
-	}
+	 }
   </script>
   </head>
    <body onload="createInitialInterface()">
