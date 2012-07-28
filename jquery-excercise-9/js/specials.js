@@ -7,6 +7,7 @@
   $div.insertAfter($select)
   $select.one('change',function(){
      var x = $(this).val()
+     $specials.find('li').eq(1).hide()
      $.getJSON('data/specials.json', function(data){
      json_data = data
      str = json_data[x].title + "<br />" + json_data[x].text + "<br />" + json_data[x].image + "<br />" + json_data[x].color;
