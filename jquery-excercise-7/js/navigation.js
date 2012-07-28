@@ -1,0 +1,10 @@
+$('document').ready(function(){
+  $list = $('ul#nav')
+  $list.children().each(function(index){  
+  $list.children().eq(index).hover(
+function(){ $(this).find('ul').show() }, function(){ $(this).find('ul').hide() })  
+ })
+
+
+
+});
