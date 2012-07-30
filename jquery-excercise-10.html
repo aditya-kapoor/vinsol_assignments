@@ -8,20 +8,21 @@
 <script type="text/javascript">
    $('document').ready(function(){
      $body = $('body')
-     $main_div = $body.find("table")
+     $main_div = $body.find("div#main")
      var count = 0
      $("button").click(function(){
          count++;
-         $div = $('<tr><td><div class="new-div">'+count+'</div></td></tr>')
+         $div = $('<div class="new-div">'+count+'</div>')
          $main_div.append($div)
        })
-     $('table').delegate("td","click",function(){
-            if($(this).parent().text() == count){ 
-              $(this).parent().hide()
-              count--
-             }else{
-              $(this).attr("style","border:solid")
-               }
+     $('div').delegate(".new-div","click",function(){   
+		if($(this).is($('div.new-div:last-child'))){ 
+                 $(this).remove()
+                 count--
+                 }else{
+                  $(this).attr("style","border:solid")
+                 }
+		
 	})
      });
 </script>
@@ -31,8 +32,6 @@
 <div id="main">
 <button type="button">Click Me </button>
 </div>
-<table border="1">
-</table>
 </center> 
 </body>
 </html>
