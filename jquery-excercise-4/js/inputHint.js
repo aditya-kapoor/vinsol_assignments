@@ -23,6 +23,6 @@ $(document).ready(function(){
 
   /*"Excercise 4.1.5"*/
   /*"Adding blur event to the text field" */
-  $text_field.blur(function(){   $text_field.val($search_text) })
+  $text_field.blur(function(){   if($(this).val().length == 0) $text_field.val($search_text) })
 
 });
