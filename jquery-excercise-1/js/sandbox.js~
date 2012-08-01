@@ -1,6 +1,6 @@
-/* Selecting All the elements of Divs belonging to module class*/
-var count = 0;
-$(document).ready(function(){
+    /* Selecting All the elements of Divs belonging to module class*/
+    var count = 0;
+    $(document).ready(function(){
     $divs = $("div.module");    
 
     /* Excercise 2.1.2 */
@@ -29,7 +29,7 @@ $(document).ready(function(){
  
    /*"Excercise 2.1.6"*/
    /*"Select all of the odd table rows in the table body."*/
-   $('table').find('tr').filter(":odd").length
+   $('table').find('tr').filter(":odd")
    
 
 }); 

@@ -1,13 +1,13 @@
-/* Selecting All the elements of Divs belonging to module class*/
-var count = 0;
-$(document).ready(function(){
+    /* Selecting All the elements of Divs belonging to module class*/
+    var count = 0;
+    $(document).ready(function(){
     $divs = $("div.module");    
 
     /* Excercise 2.1.2 */
     /*"Come up with three selectors that you could use to get the third item in the #myList unordered list. Which is the best to use? Why?"*/
     $("ul#myList").children().eq(2)
-    $("div#main #myList").children().eq(2)
-    $("#myList").children().eq(2)
+    $('#myList').children().filter(":even").eq(1)
+    $('li#myListItem')
     /*"Out of the three methods given above, the last method is slowest while the first one is fastest"*/
     
     /*"Excercise 2.1.3"*/
@@ -22,14 +22,11 @@ $(document).ready(function(){
 
    /*"Excercise 2.1.5"*/
    /*"Figure out how many image elements on the page have an alt attribute." */
-   $('img').each(function(index,element){  
-       if($(element).attr("alt").length != 0) count++;
-    });
-   count;
+   $('img[alt]').length
  
    /*"Excercise 2.1.6"*/
    /*"Select all of the odd table rows in the table body."*/
-   $('table').find('tr').filter(":odd")
+   $('table').find('tr:odd')
    
 
 }); 
