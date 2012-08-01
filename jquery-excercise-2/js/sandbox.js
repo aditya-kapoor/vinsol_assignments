@@ -7,28 +7,24 @@ $(document).ready(function(){
 
    /*"Excercise 2.2.2"*/
    /*"Select the search input text box, then traverse up to the form and add a class to the form." */
-   $('input.input_text').parent().attr("class","form-class")
-   $('input.input_text')
+   $('input.input_text').parent().addClass("form-class")
+   
 
    /*"Excercise 2.2.3"*/
    /*"Select the list item inside #myList that has a class of 'current' and remove that class from it; add a class of 'current' to the next list item."*/
-   var selectedItem = $('#myList').find('.current')
-   var nextItem = selectedItem.next()
+   var selectedItem = $('#myList .current')
+   selectedItem.next().addClass("current")
    selectedItem.remove()
-   nextItem.attr("class","current")
    
    /*"Excercise 2.2.4"*/
    /*"Select the select element inside #specials; traverse your way to the submit button"*/
-   start = $('#specials').children().eq(0)
-   form = start.siblings().eq(1)
-   submit = form.children().find(".buttons").children().eq(0)
-
+   start = $('#specials form select')
+   end = $('#specials form .buttons')
+   
   /*"Excercise 2.2.5"*/
   /*"Select the first list item in the #slideshow element; add the class 'current' to it, and then add a class of 'disabled' to its sibling elements."*/
-  var firstElement = $('#slideshow').children().eq(0)
-  var siblings = firstElement.siblings()
-  firstElement.attr("class","current")
-  siblings.each(function(index,element){ $(element).attr("class","disabled") })
+  $('#slideshow :first-child').eq(0).addClass("current")
+  $('#slideshow :first-child').eq(0).siblings().addClass("disabled")
 
 
 });
