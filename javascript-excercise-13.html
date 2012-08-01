@@ -4,9 +4,10 @@
 <script type="text/javascript">
 function getURL(){
    var url = prompt("Enter a URL","http://")
-   var pattern = /^((ht|f|sm)tps?:\/\/)?((([A-z]+)\.)*)([A-z]+\.[A-z]{2,4})$/
-   alert("Sub Domain:" + RegExp.$5)
-   alert("Domain:" + RegExp.$6)
+   var pattern = /^(https?:\/\/)?((([A-z]+)\.)*)([A-z]+\.[A-z]{2,4})$/
+   pattern.test(url)
+   alert("Sub Domain:" + RegExp.$4)
+   alert("Domain:" + RegExp.$5)
   }
 </script>
 </head>
