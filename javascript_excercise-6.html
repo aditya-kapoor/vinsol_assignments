@@ -1,75 +1,77 @@
 <html>
-<head>
-<style type="text/css">
-div#main-container{
-width:900px;
-display:table-row;
-height:100%;
-}
+  <head>
+    <style type="text/css">
+      div#main-container{
+      	width:900px;
+      	display:table-row;
+      	height:100%;
+        }
+      div#main-countries{
+      	display:table-cell;
+      	width:300px;
+      	height:100%;
+        }
+      div#selected-countries{
+      	display:table-cell;
+      	width:300px;
+      	height:100%;
+        }      
+      div#buttons{
+      	display:table-cell;
+      	width:300px;
+      	height:100%;
+      	vertical-align:middle;
+      	}
+      .button{
+      	display:block;
+      	background-color:red;
+      	color:white;
+      	text-align:center;
+      	font-weight:bold;
+      	margin-bottom:10px;
+      	padding-top:5px;
+      	}
+    </style>
 
-div#main-countries{
-display:table-cell;
-width:300px;
-height:100%;
-}
-div#selected-countries{
-display:table-cell;
-width:300px;
-height:100%;
-}
-div#buttons{
-display:table-cell;
-width:300px;
-height:100%;
-vertical-align:middle;
-}
-.button{
-display:block;
-background-color:red;
-color:white;
-text-align:center;
-font-weight:bold;
-margin-bottom:10px;
-padding-top:5px;
-}
-</style>
-<script type="text/javascript">
-function addCountries(){
-var x = document.getElementById("master-countries");
-var options = x.options;
-var index = x.selectedIndex;
-var a = document.getElementById("select-countries");
-var option = document.createElement("option");
-option.text = options[index].text;
-try
-  {
-  a.add(option,a.options[null]);
+  <script type="text/javascript">
+  function processCountries(command){
+      var master_countries = document.getElementById("master-countries");
+      var selected_countries = document.getElementById("selected-countries"); 
+      var option = document.createElement("option")
+      if(command == 1)  /* Add Command From master countries to the selected countries */
+      { 
+        var options = master_countries.options;
+        var index = master_countries.selectedIndex;
+        option.text = options[index].text
+        try
+        { 
+  	       selected_countries.add(option,selected_countries[null])
+        }
+        catch(e)
+        {   
+          selected_countries.add(options,null);   
+        }
+      master_countries.remove(index)
+      master_countries.blur()
+      }
+      else
+      {
+        var options = selected_countries.options;
+        var index = selected_countries.selectedIndex;
+        option.text = options[index].text
+        try
+        { 
+  	       master_countries.add(option,master_countries[null])
+        }
+        catch(e)
+        {   
+            master_countries.add(options,null);   
+        }
+      selected_countries.remove(index)
+      selected_countries.blur()
+      }
   }
-catch (e)
-  {
-  a.add(option,null);
-  }
-x.remove(index);
-x.blur();
-}
 
-function removeCountries(){
-var x = document.getElementById("select-countries");
-var options = x.options;
-var index = x.selectedIndex;
-var a = document.getElementById("master-countries");
-var option = document.createElement("option");
-option.text = options[index].text;
-try
-  {
-  a.add(option,a.options[null]);
-  }
-catch (e)
-  {
-  a.add(option,null);
-  }
-x.remove(index);
-}
 </script>
 </head>
 <body>
@@ -83,17 +85,17 @@ x.remove(index);
 <option> Nepal </option>
 <option> Bhutan </option>
 <option> Myanmar </option>
-<option> Bhutan </option>
 </select>
 	</div>
-     <div id="buttons">
-     <button type="button" class="button" onclick="addCountries()">Add -->></button>
-     <button type="button" class="button" onclick="removeCountries()"><-- Remove</button>
-     </div>
-     <div id="selected-countries">
-<select style="width:200px;height:200px;" id="select-countries" multiple>
-</select>
+	<div id="buttons">
+        <button type="button" class="button" onclick="processCountries(1)">Add -->></button>
+        <button type="button" class="button" onclick="processCountries(2)"><-- Remove</button>
+        </div>
+	<div id="select-countries">
+	<select style="width:200px;height:200px;" id="selected-countries" multiple>
+	</select>
 	</div>
 </div>
 </body>
 </html>
+
