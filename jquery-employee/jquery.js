@@ -121,12 +121,13 @@ var employees = [
 	$('img.remove-added').live("click",function() {
 			$count = $(this).attr("id")
 			//console.log($count)
-			if(confirm("Do You Want to Delete This Row??"))
+			if(confirm("Do You Want to Delete This Row??")){
 				$(this).parent().remove()
-			count--
-			$section = getSection($count)
-			$id = getId($count)
-			$('#to-do-'+$section+"-"+$id).remove()
+				$section = getSection($count)
+				$id = getId($count)
+				$('#to-do-'+$section+"-"+$id).remove()
+				count--
+			}
 	})
 
 })
