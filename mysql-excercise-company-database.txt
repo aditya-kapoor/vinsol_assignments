@@ -218,13 +218,11 @@ C
 
 2. Find all employees who have exposure to HTML, Javascript and IOS.
   
-select distinct(user_id) from user 
-where project_done in (
-select distinct(proj_id) from 
-project as P inner join technology as T
-on P.tech_id = T.tech_id
-where T.name="HTML" or T.name="Javascript" or T.name="IOS"
-)
+select user.user_id from 
+user, project 
+where user.project_done = project.proj_id and tech_id in ('T1', 'T2', 'T5') 
+group by user_id 
+having count(distinct project.tech_id)=3
 
 user_id
 A
