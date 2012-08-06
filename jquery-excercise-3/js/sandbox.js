@@ -3,16 +3,12 @@ $(document).ready(function(){
   /*"Excercise 2.3.1"*/
   /*"Add five new list items to the end of the unordered list #myList."*/
   var list = $('#myList') 
-   $('#myList :last-child').after("<li id='1'> Appended List Items </li>")
-   $('#myList :last-child').after("<li id='2'> Appended List Items </li>")
-   $('#myList :last-child').after("<li id='3'> Appended List Items </li>")
-   $('#myList :last-child').after("<li id='4'> Appended List Items </li>")
-   $('#myList :last-child').after("<li id='5'> Appended List Items </li>")
-  
+   for(var i=0;i<=5;++i)
+   $('#myList :last-child').after("<li> Appended List Items </li>")
+ 
   /*"Excercise 2.3.2"*/
   /*"Remove the odd list items"*/
-  list = $('#myList')
-  list.children().filter(":odd").remove()
+  $('#myList :odd').remove()
   
   /*"Excercise 2.3.3"*/
   /*"Add another h2 and another paragraph to the last div.module"*/
