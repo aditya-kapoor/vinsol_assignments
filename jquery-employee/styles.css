@@ -1,0 +1,175 @@
+#main-container {  }
+
+#div-roles{ width:200px; 
+	//background-color:grey; 
+	height:auto;
+	margin:10px; 
+	float:left;
+	border: solid; 
+}
+
+#div-employees{ width:150px;
+	display:inline-block;
+	height:auto;
+	//background-color:red;
+	float:left;
+	margin:10px; 
+	border: solid;
+}
+
+#div-to-do{ width:540px;
+	display:inline-block;
+	height:auto;
+	//background-color:green;
+	float:left;
+	margin:10px;
+	border: solid;
+}
+
+.div-text{ font-weight: bold; width: auto;}
+
+.toggle-image{ height:inherit;}
+
+ul{ list-style:none;
+	margin-left:-40px; 
+}
+
+ul li.added-elements{ border-top:solid; 
+	font-weight: normal; 
+	text-align: left; 
+	text-decoration: none; 
+}
+
+ul li.roles { border-bottom:solid; 
+	text-align:center; 
+	font-weight:bold;
+}
+
+ul li.to-do { border-bottom:solid; 
+	text-align:center; 
+	font-weight:bold;
+}
+
+ul li.employees { border-bottom:solid; }
+
+.first-li { text-align: center;
+	font-weight: bold;
+	border-bottom: solid 
+}
+
+.image-added { height: 23px; 
+	float: right; 
+	padding-right: 0px; 
+	margin-right: 0px;
+}
+
+.added_emp { text-align: left; 
+	font-weight:normal; 
+	border:none !important; 
+	text-decoration: none !important;
+}
+
+.ui-draggable { border: normal;}
+
+.remove-added { height: 20px; 
+	float: right; 
+	padding-right: 0px; 
+	margin-right: 0px;
+	display: none
+}
+
+.textarea { 
+	font-weight: bold; 
+	width:350px; 
+	height:50px; 
+	text-align: center;
+	padding-top: 15px; 
+	margin:15px;
+	margin-bottom: 10px;
+	margin-right: -20px;
+}
+
+.para {
+	display:inline-block; 
+	width: 100px; height: 30px; 
+	text-align: center; 
+	font-weight: bold; 
+	float:left; 
+	border:solid; 
+	background-color: white;
+	margin:10px;
+	margin-bottom: -2px;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+
+.li-to-do{
+	border: solid;
+	border-width: 1px;
+}
+
+.li-roles{
+	border: solid;
+	border-width: 1px;
+}
+
+.li-roles:hover {
+	background-color: #DAD7D7;
+}
+
+.div-area1{width:auto;
+	height:auto; 
+	}
+
+.para1{display:inline-block; 
+	background-color:white;
+	width:100px; 
+	border:solid;
+	margin:10px;
+	padding:5px;
+	text-align:center;
+	font-weight:bold;
+	float:left;
+	position:relative;
+}
+
+.image1{width:25px;
+ 	height:25px; 
+ 	float:right;
+ 	margin:3px}
+
+.text-area1{border:solid; 
+	width:350px; 
+	height:85px;
+	text-align:center; 
+	background-color:white;
+	margin-left:175px;
+	margin-bottom:10px;
+	margin-top:10px;
+	margin-right:15px;
+	position: relative;
+}
+
+.to-do-appended-inner-para{
+	padding: 15px;
+}
+
+.li-to-do .box{
+    display:none;
+    position: absolute;
+    width:101px;
+    height:auto;
+    background: orange;
+    padding: 5px;
+    border: 1px solid black;
+    top:75x;
+    margin:10px;
+    margin-top: 45px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.para1:hover+.box{
+    display: block;
+}
