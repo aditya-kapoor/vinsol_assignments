@@ -183,17 +183,9 @@ A9	U1	C3		A9
 2. For all the articles being selected above, select all the articles and also the comments associated with those articles in a single query
 
 SELECT S2 . * 
-FROM articles AS S1
-INNER JOIN comments AS S2 ON S1.artID = S2.artID
-WHERE S1.artId
-IN (
-
-SELECT A1.artID
-FROM articles AS A1
-INNER JOIN users AS A2 ON A1.userID = A2.userID
+FROM articles AS S1 INNER JOIN comments AS S2 Inner join users AS A2 
+ON S1.artID = S2.artID and S1.userID = A2.userID
 WHERE A2.name =  "Aditya"
-)
-LIMIT 0 , 30
 
 commID	userID	artID
 Comm1	U1	A1
@@ -206,9 +198,6 @@ Comm20	U1	A8
 Comm17	U1	A10
 Comm19	U1	A10
 Comm18	U1	A9
-
-
-
 
 3. Write a query to select all articles which do not have any comments
 
@@ -262,15 +251,19 @@ A1
 
 5. Write a query to select article which does not have more than one comment by the same user ( do this using left join and also do it using group by )
 
-select artID from 
-(select artID, userID, count(userID) count
+SELECT articles.name FROM 
+articles left join (
+select distinct(artID)
 from  comments
-group by artID, userID ORDER BY `comments`.`artID` ASC
-)as t
-where count=1
+group by artID, userID 
+having count(userID) > 1
+) as t1
+on articles.artID = t1.artID
+where t1.artID is null
 
-artID
-A2
+name
 A6
+A7
 A8
 A9
+
