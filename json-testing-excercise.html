@@ -37,53 +37,8 @@ var products = [
 	 }
 
 	function createInitialInterface(){
-		clearInterface();
-		var length = products.length;
-		var imgTag;
-		var div = document.getElementsByName("image-grid-row");
-		for(i=0;i<div.length;++i){
-		  for(j=0;j<4;++j){
-		    var imgTag = document.createElement("img");
-		    var index = i*4+j;
-		    imgTag.setAttribute("src",products[index].url);
-		    imgTag.setAttribute("width","100px");
-		    div[i].appendChild(imgTag);
-		      }
-		   }
+		createInterface1(products)
 	}
-
-	function sortByProperty(t){
-		var criteria = t.value;
-		switch(criteria){
-		 case 'none': createInitialInterface(); break;
-		 case 'availibility': sortByAvailability(); break;
-		 case 'brand': sortByBrand(); break;
-		 case 'name': sortByName(); break;
-		 case 'colour': sortByColour(); break;
-		 default: alert("Error");
-		}
-	}
-
-	function callbackFunc(a,b){
-		if(a.color == b.color) return 0;
-		return (a.color < b.color) ? -1 : 1;	
-	}
-
-	function callbackFunc1(a,b){
-		if(a.brand == b.brand) return 0
-		return (a.brand < b.brand) ? -1 : 1;
-	}
-
-	function callbackFunc2(a,b){
-		if(a.sold_out == b.sold_out) return 0;
-		return (a.sold_out < b.sold_out) ? -1 : 1;
-	}
- 
-	function callbackFunc3(a,b){
-		if(a.name == b.name) return 0;
-		return (a.name < b.name) ? -1 : 1;
-	}
-
 	function createInterface1(sorted_array){
 	  clearInterface();
 	  var length = sorted_array.length;
@@ -99,46 +54,40 @@ var products = [
 	      }
 	   }
 	}
-	function sortByColour(){
-	 	clearInterface();
-		var products_copy = products
-		var sortedArray = products_copy.sort(callbackFunc)
-		createInterface1(sortedArray);
-    }
 
-	function sortByBrand(){
+
+	function sortByProperty(t){
+		var criteria = t.value;
+		sortBySpecificProperty(criteria)
+	}
+
+	function callbackFunc(a,b,parameter){
+		if(parameter == "name"){ /* integer comparison */
+			if(parseInt(a[parameter]) == parseInt(b[parameter])) return 0;
+			return (parseInt(a[parameter]) > parseInt(b[parameter])) ? 1 : -1;	
+		}else{
+			if(a[parameter] == b[parameter]) return 0;
+			return (a[parameter] > b[parameter]) ? 1 : -1;	
+		}	
+	}
+
+	function sortBySpecificProperty(property){
 		clearInterface();
 		var products_copy = products
-		var sortedArray = products_copy.sort(callbackFunc1)
-		console.log(sortedArray)
+		var sortedArray = products_copy.sort(function(x,y) {  return callbackFunc(x,y,property) })
 		createInterface1(sortedArray);
 	}
 
-	function sortByAvailability(){
-		clearInterface();
-		var products_copy = products	
-		var sortedArray = products_copy.sort(callbackFunc2)
-		console.log(products_copy)
-		createInterface1(sortedArray);
-	}
-
-	function sortByName(){
-		clearInterface();
-		var products_copy = products	
-		var sortedArray = products_copy.sort(callbackFunc3)
-		console.log(products_copy)
-		createInterface1(sortedArray);
-	}
   </script>
   </head>
    <body onload="createInitialInterface()">
    	<div id="sort-box" align="center">
      	Sort Them By: 
 	<select onchange="sortByProperty(this)">
-	<option value="none">Select Sorting Criteria</option>
-	<option value="availibility">Availability</option>
+	<option value="name">Select Sorting Criteria</option>
+	<option value="sold_out">Availability</option>
 	<option value="brand">Brand</option>
-	<option value="colour">Colour</option>
+	<option value="color">Colour</option>
 	<option value="name">Name</option>
 	</select>
 	</div>
