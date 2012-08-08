@@ -11,7 +11,7 @@ $(document).ready(function(){
   /*"Excercise 4.1.2"*/
   /*"Adding a class of 'hint' to the search input"*/
   $text_field.addClass("hint")
-  $label.next()
+  //$label.next()
 
   /*"Excercise 4.1.3"*/
   /*"Remove the label element"*/
@@ -19,10 +19,14 @@ $(document).ready(function(){
 
   /*"Excercise 4.1.4"*/
   /*"Adding Focus Event to the text field"*/
-  $text_field.focus(function(){   $text_field.val("") })
+  $text_field.bind("focus",function(){   $text_field.val(""); $text_field.removeClass("hint") })
 
   /*"Excercise 4.1.5"*/
   /*"Adding blur event to the text field" */
-  $text_field.blur(function(){   if($(this).val().length == 0) $text_field.val($search_text) })
-
-});
+  $text_field.bind("blur", function(){  
+	if($(this).val().length == 0) {
+	   $text_field.val($search_text) 
+	   $text_field.addClass("hint")
+	  }
+	})
+  });
