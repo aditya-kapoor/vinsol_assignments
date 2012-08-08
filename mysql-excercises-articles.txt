@@ -213,6 +213,12 @@ WHERE A1.artID = A2.artID
 )
 LIMIT 0 , 30
 
+OR (Using Left Join)
+
+select * from 
+articles left join comments 
+on articles.artId = comments.artID
+where comments.commId is null
 
 artID
 A7
@@ -248,6 +254,34 @@ HAVING MAX( count )
 
 artID
 A1
+
+OR
+
+SELECT t1.artID
+FROM (
+SELECT A2.artId, COUNT( A2.artID ) COUNT
+FROM articles AS A1
+INNER JOIN comments AS A2 ON A1.artID = A2.artID
+GROUP BY A2.artID
+ORDER BY COUNT( A2.artID ) DESC
+) AS t1
+join 
+(
+SELECT A2.artId, COUNT( A2.artID ) COUNT
+FROM articles AS A1
+INNER JOIN comments AS A2 ON A1.artID = A2.artID
+GROUP BY A2.artID
+ORDER BY COUNT( A2.artID ) DESC
+Limit 1
+) as t2
+on t1.count = t2.count
+
+artID
+A1
+
+
+
+
 
 5. Write a query to select article which does not have more than one comment by the same user ( do this using left join and also do it using group by )
 
