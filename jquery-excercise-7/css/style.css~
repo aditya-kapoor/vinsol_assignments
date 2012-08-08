@@ -3,7 +3,7 @@
 	color: red;
 }
 
-#nav ul.hover {
+ul.hover {
 	display:block;
 	color: blue;
 }
