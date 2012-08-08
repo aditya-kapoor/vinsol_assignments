@@ -35,43 +35,30 @@
 
   <script type="text/javascript">
   function processCountries(command){
-      var master_countries = document.getElementById("master-countries");
-      var selected_countries = document.getElementById("selected-countries"); 
-      var option = document.createElement("option")
-      if(command == 1)  /* Add Command From master countries to the selected countries */
-      { 
-        var options = master_countries.options;
-        var index = master_countries.selectedIndex;
-        option.text = options[index].text
-        try
-        { 
-  	       selected_countries.add(option,selected_countries[null])
-        }
-        catch(e)
-        {   
-          selected_countries.add(options,null);   
-        }
-      master_countries.remove(index)
-      master_countries.blur()
-      }
-      else
-      {
-        var options = selected_countries.options;
-        var index = selected_countries.selectedIndex;
-        option.text = options[index].text
-        try
-        { 
-  	       master_countries.add(option,master_countries[null])
-        }
-        catch(e)
-        {   
-            master_countries.add(options,null);   
-        }
-      selected_countries.remove(index)
-      selected_countries.blur()
-      }
+	var master_countries = document.getElementById("master-countries");
+	var selected_countries = document.getElementById("selected-countries");
+	if(command == 1){ 
+	var options = master_countries.options
+	for(i=options.length-1; i>=0;--i){
+  var option_tag = document.createElement("option")
+	if(options[i].selected){
+			option_tag.text = options[i].text
+			try { master_countries.remove(i,null) } catch(e) { master_countries.remove(i) }
+      try { selected_countries.add(option_tag,selected_countries[null]) } catch(e) { selected_countries.add(option_tag,null) }
+			}
+		}
+	}else{
+	var options = selected_countries.options
+	for(i=options.length-1; i>=0;--i){
+  var option_tag = document.createElement("option")
+	if(options[i].selected){
+			option_tag.text = options[i].text
+			try { selected_countries.remove(i,null) } catch(e) { selected_countries.remove(i) }
+      try { master_countries.add(option_tag,master_countries[null]) } catch(e) { master_countries.add(option_tag,null) }
+			}
+		}
+	}
   }
-
 </script>
 </head>
 <body>
