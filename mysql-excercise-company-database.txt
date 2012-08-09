@@ -232,20 +232,14 @@ D
 
 3. Find the technologies in which a particular employee(Say B) has expertise(3 or more projects)
 
-select T.tech_id, T.name,PD.proj_id
+select T.name, count(PD.proj_id) count
 from project as P inner join technology as T inner join project_users as PD
 on P.tech_id = T.tech_id and P.proj_id = PD.proj_id
 where PD.user_id = 'B'
-group by tech_id
+group by P.tech_id
+having count > 3
 
-
-tech_id	name		proj_id
-T1	HTML		P1
-T2	Javascript	P1
-T3	Ruby		P1
-T4	Rails		P1
-T5	IOS		P7
-T6	Android		P7
+Null Set
 
 4. Find the employee who has done most no of projects in android.
 
@@ -278,3 +272,28 @@ having max(count)
 
 user_id
 D
+
+
+
+or
+
+
+select t1.user_id from 
+(
+select PR.user_id, count(user_id) count from
+project as P inner join project_users as PR inner join technology as T
+on P.proj_id = PR.proj_id and P.tech_id = T.tech_id
+where T.name = "Android"
+group by user_id
+order by count DESC
+)as t1
+join(
+select PR.user_id, count(user_id) count from
+project as P inner join project_users as PR inner join technology as T
+on P.proj_id = PR.proj_id and P.tech_id = T.tech_id
+where T.name = "Android"
+group by user_id
+order by count DESC
+limit 1
+)as t2
+on t1.count = t2.count
