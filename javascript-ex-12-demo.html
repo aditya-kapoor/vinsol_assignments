@@ -33,10 +33,10 @@
         var answer;
         switch (operator)
         {
-         case '+': answer = op1+op2; break;
-         case '-': answer = op1-op2; break;
-         case '/': answer = op1/op2; break;
-         case '*': answer = op1*op2; break;
+         case '+': return eval(op1+op2);
+         case '-': return eval(op1-op2);
+         case '/': return eval(op1/op2);
+         case '*': return eval(op1*op2);
          default : alert("Error");
        }
        return parseInt(answer);
@@ -60,8 +60,8 @@
         count = 30;
         setTimer();
        }
-      function getOperator() { return operators[parseInt(Math.random() * (4-0)) + 0] }
-      function generateNumber() { return parseInt(Math.random()*(100-1)+1)}
+      function getOperator() { return operators[parseInt(Math.random() * (4))] }
+      function generateNumber() { return parseInt(Math.random() * (100-1) + 1)}
       function setTimer(){
         if(start == true) {
           generateDisplay(questions_answered)
@@ -105,9 +105,9 @@
         }
       function checkAnswer(questions_answered,user_answer){
         if(questions[questions_answered][3] == user_answer) 
-          {   score = score + 3;  }
+          {   score = score + 1;  }
         else 
-          {   score = score - 1;  }
+          {   score = score - 0;  }
         recordAnswer(user_answer)
         }
       function displayScore(){
