@@ -183,15 +183,26 @@ ALTER TABLE `tags`
 
 
 1. Find image that has been tagged most no of times.
-SELECT id
-FROM (
 
+SELECT t1.ID
+FROM (
 SELECT images.id ID, COUNT( images.id ) Count
-FROM images
-INNER JOIN tags ON images.id = tags.image_id
-GROUP BY (
-images.id
-)
+FROM images INNER JOIN tags 
+ON images.id = tags.image_id
+GROUP BY images.id
+ORDER BY `count`  DESC
+) as t1 
+join 
+(
+SELECT images.id ID, COUNT( images.id ) Count
+FROM images INNER JOIN tags 
+ON images.id = tags.image_id
+GROUP BY images.id
+ORDER BY `count`  DESC
+Limit 1
+) as t2
+where t1.count = t2.count
+
 
 id
 I2
@@ -255,6 +266,30 @@ where tagged = 'U5' and F.user_id = 'U5'
 group by F.friend 
 ) as t2
 )
+
+OR
+
+select t1.friend from 
+(
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+ORDER BY `tagcount` DESC
+)as t1
+join
+(
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+ORDER BY `tagcount` DESC
+Limit 1
+) as t2
+on t1.tagcount = t2.tagcount
+
 
 friend
 U1
