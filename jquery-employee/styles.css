@@ -124,12 +124,10 @@ ul li.employees { border-bottom:solid; }
 
 .li-roles:hover img.remove-added {
 	display:block;
-	background-color:red;
 }
 
 img.remove-added:hover{
-display:block;
-	background-color: red;
+	display:block;
 }
 
 .div-area1{width:auto;
