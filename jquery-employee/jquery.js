@@ -52,7 +52,7 @@ var employees = [
 
 	function addEmployees(){
 		for(i = 0; i < employees.length; ++i){
-		$li = $('<li><li/>')
+		$li = $('<li></li>')
 		$li.addClass("employees")
 		$li.append(employees[i].name)
 		$('#div-employees ul').append($li)
