@@ -52,7 +52,7 @@ var employees = [
 
 	function addEmployees(){
 		for(i = 0; i < employees.length; ++i){
-		$li = $('<li/>')
+		$li = $('<li><li/>')
 		$li.addClass("employees")
 		$li.append(employees[i].name)
 		$('#div-employees ul').append($li)
@@ -132,21 +132,18 @@ var employees = [
 		$(this).find('img').toggle (event.type === "mouseenter")
 		}) 
 	
-	
 	$('.image-added').click(function(){
 		$(this).attr("src",$(this).attr("src") == add ? minus : add)
 		$(this).parent().children().eq(1).slideToggle('slow')
-		//console.log($(this).parent().children().eq(-1))
 	})
 
-	//$('img').delegate(".remove-added","click",function(){ alert("Hello")})
 	$('img.remove-added').live("click",function() {
 			$parent_id = $(this).parent().attr("id")
 			console.log($parent_id)
 			if(confirm("Do You Want to Delete This Row??")){
 				$(this).parent().remove()
-				$section = getSection($parent_id)
-				$id = getId($parent_id)
+				$section = getSection($parent_id) /* To determine whether the to-do section is in Adnroid, ROR or somewhere else */
+				$id = getId($parent_id) /* Get the appended count or id number which would select the particular to-do element */
 				$('#to-do-'+$section+"-"+$id).remove()
 				count--
 			}
