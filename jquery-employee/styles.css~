@@ -51,8 +51,6 @@ ul li.roles { border-bottom:solid;
 ul li.to-do { border-bottom:solid; 
 	text-align:center; 
 	font-weight:bold;
-	float:left;
-	width:100%
 }
 
 ul li.employees { border-bottom:solid; }
