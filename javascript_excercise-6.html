@@ -34,31 +34,21 @@
     </style>
 
   <script type="text/javascript">
-  function processCountries(command){
-	var master_countries = document.getElementById("master-countries");
-	var selected_countries = document.getElementById("selected-countries");
-	if(command == 1){ 
-	var options = master_countries.options
-	for(i=options.length-1; i>=0;--i){
-  var option_tag = document.createElement("option")
-	if(options[i].selected){
-			option_tag.text = options[i].text
-			try { master_countries.remove(i,null) } catch(e) { master_countries.remove(i) }
-      try { selected_countries.add(option_tag,selected_countries[null]) } catch(e) { selected_countries.add(option_tag,null) }
-			}
-		}
-	}else{
-	var options = selected_countries.options
-	for(i=options.length-1; i>=0;--i){
-  var option_tag = document.createElement("option")
-	if(options[i].selected){
-			option_tag.text = options[i].text
-			try { selected_countries.remove(i,null) } catch(e) { selected_countries.remove(i) }
-      try { master_countries.add(option_tag,master_countries[null]) } catch(e) { master_countries.add(option_tag,null) }
-			}
+  function processCountries(bullet, target){
+		console.log(bullet)
+		console.log(target)
+		bullet = document.getElementById(bullet)
+		target = document.getElementById(target)
+		var options = bullet.options
+		for(i=options.length-1;i>=0;--i) {
+			var option_tag = document.createElement("option")
+			if(options[i].selected) {
+				option_tag.text = options[i].text
+				try { bullet.remove(i,null) } catch(e) { target.remove(i) }
+				try { target.add(option_tag,bullet[null])} catch(e) { target.add(option_tag,null) }	
 		}
 	}
-  }
+}
 </script>
 </head>
 <body>
@@ -75,8 +65,8 @@
 </select>
 	</div>
 	<div id="buttons">
-        <button type="button" class="button" onclick="processCountries(1)">Add -->></button>
-        <button type="button" class="button" onclick="processCountries(2)"><-- Remove</button>
+        <button type="button" class="button" id="add" onclick="processCountries('master-countries','selected-countries')">Add -->></button>
+        <button type="button" class="button" id="remove" onclick="processCountries('selected-countries','master-countries')"><-- Remove</button>
         </div>
 	<div id="select-countries">
 	<select style="width:200px;height:200px;" id="selected-countries" multiple>
