@@ -1,10 +1,10 @@
 puts "Enter an Input String"
-answer = gets
-
-answer = answer.chomp
-
+answer = gets.chomp
 hash = Hash.new(0)
-	answer.each_char do |n|
-	  hash[n] += 1
-	end 
-puts hash
+pattern = /[A-Z]/i
+answer.each_char do |n|
+	if(n.match(pattern))
+		hash[n] += 1
+	end
+end  
+hash.each {|key,value| puts "#{key} has #{value} occurence(s)"}
