@@ -7,9 +7,11 @@ class Name
 		begin
 			if(@firstname.length == 0 || @lastname.length == 0)
 				raise "Empty Name"
-			else if (@firstname != @firstname.capitalize)
+			else 
+				if (@firstname != @firstname.capitalize)
 				raise "First Name Should be Capitalized"
 			end
+			puts "Welcome #{@firstname}, #{@lastname}"
 			end
 		rescue Exception => e
 			puts e.message	 
