@@ -18,20 +18,16 @@ def Sumtime(arr)
 end
 
 def generateTimeString(t1)
-	time_str = ""
-	time_str = t1.hour.to_s + ":" + t1.min.to_s + ":" + t1.sec.to_s
+	time_str = t1.strftime("%H:%M:%S")
 	time_str
 end
 
-# t1 = Time.new()
-# t2 = Time.new()
-# t3 = Time.new()
-# t4 = Time.new()
 
 t1 = generateTimeString(Time.new)
 t2 = generateTimeString(Time.new)
 t3 = generateTimeString(Time.new)
 t4 = generateTimeString(Time.new)
+
 arr = [t1,t2,t3,t4]
 
 Sumtime(arr)
