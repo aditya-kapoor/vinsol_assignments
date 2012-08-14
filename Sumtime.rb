@@ -1,7 +1,11 @@
-def Sumtime(t1,t2,t3,t4)
-	total_seconds = t1.sec + t2.sec + t3.sec + t4.sec
-	total_minutes = t1.min + t2.min + t3.min + t4.min
-	total_hours = t1.hour + t2.hour + t3.hour + t4.hour
+def Sumtime(arr)
+	total_seconds, total_minutes, total_hours = 0,0,0
+	for i in 0...arr.length do
+		hour,min,sec = arr[i].split(":")
+		total_seconds += sec.to_i
+		total_minutes += min.to_i
+		total_hours += hour.to_i
+	end
 	if(total_seconds > 60)
 		total_minutes += total_seconds/60
 		total_seconds = total_seconds % 60
@@ -13,10 +17,21 @@ def Sumtime(t1,t2,t3,t4)
 	puts "The total time is #{total_hours/24} days and #{total_hours%24}:#{total_minutes}:#{total_seconds}"
 end
 
+def generateTimeString(t1)
+	time_str = ""
+	time_str = t1.hour.to_s + ":" + t1.min.to_s + ":" + t1.sec.to_s
+	time_str
+end
 
-t1 = Time.new()
-t2 = Time.new()
-t3 = Time.new()
-t4 = Time.new()
+# t1 = Time.new()
+# t2 = Time.new()
+# t3 = Time.new()
+# t4 = Time.new()
 
-Sumtime(t1,t2,t3,t4)
+t1 = generateTimeString(Time.new)
+t2 = generateTimeString(Time.new)
+t3 = generateTimeString(Time.new)
+t4 = generateTimeString(Time.new)
+arr = [t1,t2,t3,t4]
+
+Sumtime(arr)
