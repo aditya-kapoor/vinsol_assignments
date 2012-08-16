@@ -1,0 +1,46 @@
+div#main-container{
+	width:1000px;
+}
+
+div#tweet-container{
+	width:300px;
+	height:auto;
+	float:right;
+}
+
+div#select-tweets{
+	float:center;
+}
+
+div.tweet-div{
+	border: solid;
+	border-width: 1px;
+	width:520px;
+}
+
+div.upper-div{
+	width:500px;
+	display: inline-block;
+}
+
+div.mid-div{
+	width:500px;
+	text-align: left;
+	font-weight: bold;
+}
+
+div.lower-div{
+	text-align: left;
+	width: 500px;
+}
+
+img.profile-image{
+	display: inline;
+	margin:5px;
+	float:left;
+}
+p.name-para{
+	display: inline;
+	font-weight: bold;
+	margin:10px;
+}
