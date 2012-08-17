@@ -5,9 +5,9 @@ $('document').ready(function(){
 	var timing_variable;
 
 	getTweets()
-	//setTimer()
+	setTimer()
 	function setTimer(){
-		timing_variable = setInterval(function(){ getTweets()},10000)
+		timing_variable = setInterval(function(){ getTweets()},15000)
 	}
 	function cleanInterface(){
 		//$('#selected-tweets').html(" ");
@@ -42,15 +42,10 @@ $('document').ready(function(){
 	function highlightKeywords(){
 		$('#tweet-container').find('.mid-div').each(function(index,element){ 
 			var text = $(element).find('p').text()
-			var index = text.indexOf("Ruby")
-			var otherText;
-			if(index >= 0){
-				highlightedText = "<span class='highlight'>" + text.substr(index,index+"Ruby".length) + "</span>"
-				otherText = text.substr(0,index) + highlightedText + text.substr(index+"Ruby".length, text.length)				
-			}else{
-				otherText = text.substr(0,text.length)
-			}
-			$(element).find('p').html(otherText)
+			var search_string = /(Ruby|ROR)/ig;
+			$(element).find('p').html(
+			text.replace(search_string,"<span class='highlight'>'$1'</span>")
+			)
 		})
 	}
 
@@ -102,32 +97,18 @@ $('document').ready(function(){
 
 		$tweet_div.append($upper_div).append($mid_div).append($lower_div)
 		$(div).prepend($tweet_div)
-		$(div).show()
-
-		if($(div).next().length == 0){
-			$(div).prev().hide()
-		}else{
-			$(div).next().hide()
-		}
+		//$(div).show()
 	}
 
 	$('#select-name').bind("change",function(){
 		$('div#selected-tweets').html(" ")
 		if($(this).val() == "none"){
-			$('div#selected-tweets').hide()
-			$('div#tweet-container').show()
+			$('div#tweet-container .tweet-div').show()
 		}else{
-			for(i=0;i<=global_json.length;++i){
-				if(global_json[i].from_user == $(this).val()){
-					var img_src = global_json[i].profile_image_url
-					var twitter_handle = global_json[i].from_user
-					var username = global_json[i].from_user_name
-					var tweet = global_json[i].text
-					var time = global_json[i].created_at
-					var source = global_json[i].source
-					//createInterface(img_src,twitter_handle,username,tweet,time,source,"#selected-tweets")
-					$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
-				}
+			if($('div#tweet-container .tweet-div[name='+$(this).val()+']').is(':hidden')){
+				$('div#tweet-container .tweet-div[name='+$(this).val()+']').show()
+			}else{
+				$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
 			}
 		}
 	})
