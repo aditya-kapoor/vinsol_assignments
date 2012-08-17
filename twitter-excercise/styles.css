@@ -2,6 +2,11 @@ div#main-container{
 	width:1000px;
 }
 
+div#selected-tweets{
+	float:left;
+	height:auto;
+}
+
 div#tweet-container{
 	width:300px;
 	height:auto;
@@ -16,10 +21,11 @@ div.tweet-div{
 	border: solid;
 	border-width: 1px;
 	width:520px;
+	background-color: orange;
 }
 
 div.upper-div{
-	width:500px;
+	width:inherit;
 	display: inline-block;
 }
 

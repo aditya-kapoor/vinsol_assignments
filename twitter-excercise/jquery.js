@@ -5,56 +5,14 @@ $('document').ready(function(){
 
 	getTweets()
 	setTimer()
-	//var timing_variable = self.setInterval(function(){getTweets()},10000);
-	// function createSelectedInterface(img_src,twitter_handle,username,tweet,time,source){
-		
-	// 	$tweet_div = $('<div></div>')
-	// 	$tweet_div.addClass('tweet-div')
-
-	// 	$upper_div = $('<div></div>')
-	// 	$upper_div.addClass("upper-div")
-	// 	$profile_img = $('<img />')
-	// 	$profile_img.addClass("profile-image")
-	// 	$profile_img.attr("src",img_src)
-		
-	// 	$name_para = $('<p></p>')
-	// 	$name_para.addClass("name-para")
-	// 	$name_para.append(twitter_handle)
-	// 	$name_para.append("("+username+")")
-	// 	$upper_div.append($profile_img).append($name_para)
-		
-	// 	$mid_div = $('<div></div>')
-	// 	$mid_div.addClass("mid-div")
-	// 	$tweet_field = $('<div></div>')
-	// 	$tweet_para = $('<p></p>')
-	// 	$tweet_para.append(tweet)
-	// 	$tweet_field.append($tweet_para)
-	// 	$mid_div.append($tweet_field)
-		
-	// 	$lower_div = $('<div></div>')
-	// 	$lower_div.addClass("lower-div")
-	// 	$time_para = $('<p></p>')
-	// 	$time_para.addClass("time-para")
-	// 	$time_para.append("Time : " + time + "<br />")
-	// 	$time_para.append("Sent Via : " + source)
-	// 	$lower_div.append($time_para)
-
-	// 	$tweet_div.append($upper_div).append($mid_div).append($lower_div)
-	// 	$('div#selected-tweets').append($tweet_div)
-	// 	$('div#selected-tweets').show()
-	// 	$('div#tweet-container').hide()
-	// }
-
 	function setTimer(){
 		timing_variable = setInterval(function(){ getTweets()},10000)
 	}
-
 	function cleanInterface(){
 		$('#selected-tweets').html(" ");
 		$('#tweet-container').html(" ");
 		$('#select-name').find('option:gt(0)').remove();
 	}
-
 	function getTweets(){
 		cleanInterface()
 		$.ajax({
@@ -73,7 +31,6 @@ $('document').ready(function(){
 					var source = data.results[i].source
 					createInterface(img_src,twitter_handle,username,tweet,time,source,"#tweet-container")
 					addNames(twitter_handle)
-					highlightKeywords()
 				}
 			}
 		});
@@ -84,12 +41,12 @@ $('document').ready(function(){
 	}
 
 	function addNames(twitter_handle){
-			exists = false
-			$('#select-name').children().each(function(index,element){
-				if($(element).val() == twitter_handle) 
-					exists = true
+		exists = false
+		$('#select-name').children().each(function(index,element){
+			if($(element).val() == twitter_handle) 
+				exists = true
 			})
-			if(!exists){
+		if(!exists){
 			$option = $('<option></option>')
 			$option.append(twitter_handle)
 			$option.val(twitter_handle)
@@ -133,7 +90,7 @@ $('document').ready(function(){
 		$tweet_div.append($upper_div).append($mid_div).append($lower_div)
 		$(div).append($tweet_div)
 		$(div).show()
-		if(div == "#tweet-container"){
+		if($(div).next().length == 0){
 			$(div).prev().hide()
 		}else{
 			$(div).next().hide()
