@@ -8,7 +8,6 @@ div#selected-tweets{
 }
 
 div#tweet-container{
-	width:300px;
 	height:auto;
 	float:right;
 }
@@ -49,4 +48,8 @@ p.name-para{
 	display: inline;
 	font-weight: bold;
 	margin:10px;
+}
+
+.highlight{
+	background-color:green;
 }
