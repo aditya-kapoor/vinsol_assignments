@@ -1,0 +1,49 @@
+[
+    {
+        "Hotel_name": "Four Seasons",
+        "rate": "200",
+        "seasonal_rates": [
+            {
+                "New Year": {
+                    "start": "28-12",
+                    "end": "05-01",
+                    "rate": "310"
+                }
+            },
+            {
+                "Summer Vacations": {
+                    "start": "01-06",
+                    "end": "31-07",
+                    "rate": "280"
+                }
+            }
+        ],
+        "tax": "8"
+    },
+    {
+        "Hotel_name": "Hilton",
+        "rate": "506",
+        "tax": "20"
+    },
+    {
+        "Hotel_name": "Ramada",
+        "rate": "300",
+        "seasonal_rates": [
+            {
+                "chinese new year": {
+                    "start": "01-01",
+                    "end": "31-03",
+                    "rate": "350"
+                }
+            },
+            {
+                "ThanksGiving": {
+                    "start": "31-07",
+                    "end": "15-08",
+                    "rate": "400"
+                }
+            }
+        ],
+        "tax": "10"
+    }
+]
