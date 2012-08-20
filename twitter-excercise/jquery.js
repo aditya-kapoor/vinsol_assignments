@@ -44,7 +44,7 @@ $('document').ready(function(){
 			var text = $(element).find('p').text()
 			var search_string = /(Ruby|ROR)/ig;
 			$(element).find('p').html(
-			text.replace(search_string,"<span class='highlight'>'$1'</span>")
+			text.replace(search_string,"<span class='highlight'>$1</span>")
 			)
 		})
 	}
@@ -92,6 +92,7 @@ $('document').ready(function(){
 		$time_para = $('<p></p>')
 		$time_para.addClass("time-para")
 		$time_para.append("Time : " + time + "<br />")
+		source = source.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"')
 		$time_para.append("Sent Via : " + source)
 		$lower_div.append($time_para)
 
