@@ -59,7 +59,7 @@ $('document').ready(function(){
 			$option = $('<option/>')
 			$option.append(twitter_handle)
 			$option.val(twitter_handle)
-			$('#select-name').append($option)
+			$option.insertAfter('#select-name option:eq(0)')
 		}
 	}
 
@@ -106,6 +106,7 @@ $('document').ready(function(){
 			$('div#tweet-container .tweet-div').show()
 		}else{
 			if($('div#tweet-container .tweet-div[name='+$(this).val()+']').is(':hidden')){
+				$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
 				$('div#tweet-container .tweet-div[name='+$(this).val()+']').show()
 			}else{
 				$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
