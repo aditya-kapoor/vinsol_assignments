@@ -22,6 +22,7 @@ class AreaClass
     end
 end
 
+
 Circle = AreaClass.new()
 Rectangle = AreaClass.new()
 Triangle = AreaClass.new()
