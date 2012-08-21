@@ -10,6 +10,5 @@ answer.each_char do |n|
 end  
 hash
 end
-
 hash = getHash()
 puts hash
