@@ -13,9 +13,9 @@ class Bank
  	  puts "Welcome #{@name}\nAmount of #{amount} has been deposited in your account"
  	end
  def withdraw(amount)
- 	if amount > @balance
+  if amount > @balance
     puts "Invalid Amount Entered"
- 	else
+  else
     @balance -= amount
     puts "Welcome #{@name} \nAmount of #{amount} has been withdrawn"
     end
