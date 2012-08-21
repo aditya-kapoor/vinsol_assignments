@@ -12,7 +12,6 @@
 		</select>
 		</div>
 		<div id="selected-tweets">
-		<label>Enter Your Topic For Tweet:</label>
 		<input type="text" id="query">
 		<button>Search Tweets </button>
 		</div>

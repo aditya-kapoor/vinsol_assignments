@@ -10,7 +10,7 @@ $('document').ready(function(){
 	getTweets()
 	setTimer()
 	$('#selected-tweets').fadeOut(1000)
-	$('#select-tweets').show()
+	$('#select-tweets').fadeIn(400)
 	})
 
 	function setTimer(){
