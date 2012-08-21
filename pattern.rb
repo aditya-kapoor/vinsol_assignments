@@ -3,4 +3,6 @@ def replaceVowels(str)
 	str.gsub!(pattern,'*')
 end
 
-puts replaceVowels("Auierop")
+puts "Enter A String"
+str = gets.chomp
+puts replaceVowels(str)
