@@ -14,6 +14,7 @@ class Interest
 		@amount_CI - @amount_SI
 	end
 end
+
 puts "Enter principal"
 principal = gets.chomp
 puts "Enter Time"
