@@ -21,6 +21,7 @@ class Bank
  		end
  	end
 end
+
 acc1 = Bank.new("Aditya")
 acc1.deposit(1000)
 acc1.withdraw(500)
