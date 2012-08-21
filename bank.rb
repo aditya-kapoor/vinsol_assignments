@@ -10,8 +10,8 @@ class Bank
  	end
  def deposit(amount)
     @balance += amount
- 	  puts "Welcome #{@name}\nAmount of #{amount} has been deposited in your account"
- 	end
+    puts "Welcome #{@name}\nAmount of #{amount} has been deposited in your account"
+ end
  def withdraw(amount)
   if amount > @balance
     puts "Invalid Amount Entered"
@@ -19,7 +19,7 @@ class Bank
     @balance -= amount
     puts "Welcome #{@name} \nAmount of #{amount} has been withdrawn"
     end
- 	end
+  end
 end
 
 acc1 = Bank.new("Aditya")
