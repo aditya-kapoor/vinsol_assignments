@@ -18,5 +18,4 @@ class Name
 		end
 	end
 end
-
 name = Name.new()
