@@ -1,5 +1,5 @@
 def generateReverseString(str)
-	str.reverse.split(" ").each { |word| word.reverse! }.join(" ")
+  str.reverse.split(" ").each { |word| word.reverse! }.join(" ")
 end
 
 
