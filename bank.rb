@@ -3,14 +3,14 @@ class Bank
  @@accnt_no = 0
  def initialize(name,balance=1000)
     @name = name
- 	  @account_no = @@accnt_no
- 	  @balance = balance
- 	  @@accnt_no += 1
- 	  puts "Congratulations #{@name}!! Your Account has been created"
+    @account_no = @@accnt_no
+    @balance = balance
+    @@accnt_no += 1
+    puts "Congratulations #{@name}!! Your Account has been created"
  	end
  def deposit(amount)
- 	@balance += amount
- 	puts "Welcome #{@name}\nAmount of #{amount} has been deposited in your account"
+    @balance += amount
+ 	  puts "Welcome #{@name}\nAmount of #{amount} has been deposited in your account"
  	end
  def withdraw(amount)
  	if amount > @balance
@@ -18,7 +18,7 @@ class Bank
  	else
     @balance -= amount
     puts "Welcome #{@name} \nAmount of #{amount} has been withdrawn"
-   end
+    end
  	end
 end
 
