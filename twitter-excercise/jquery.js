@@ -17,7 +17,7 @@ $('document').ready(function(){
 				global_json.concat(data.results)
 				since_id = data.results[0].id
 				console.log("Since ID",since_id)
-				for(i=0;i<data.results.length;++i){
+				for(i=0; i<data.results.length; ++i){
 					createInterface(data.results[i],"#tweet-container")
 					var twitter_handle = data.results[i].from_user
 					addNames(twitter_handle)
