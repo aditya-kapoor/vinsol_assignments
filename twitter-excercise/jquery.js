@@ -9,29 +9,17 @@ $('document').ready(function(){
 	function setTimer(){
 		timing_variable = setInterval(function(){ getTweets()},15000)
 	}
-	function cleanInterface(){
-		//$('#selected-tweets').html(" ");
-		//$('#tweet-container').html(" ");
-		//$('#select-name').find('option:gt(0)').remove();
-	}
 	function getTweets(){
-		//cleanInterface()
 		$.ajax({
 			url:"http://search.twitter.com/search.json?q=ruby%20OR%20ROR%20&rpp=100&lang=en&since_id="+since_id,
 			dataType : "jsonp",
 			success: function(data){
-				if(global_json.length == 0){ global_json = data.results}
-				else {	global_json.concat(data.results) }
+				global_json.concat(data.results)
 				since_id = data.results[0].id
 				console.log("Since ID",since_id)
 				for(i=0;i<data.results.length;++i){
-					var img_src = data.results[i].profile_image_url
+					createInterface(data.results[i],"#tweet-container")
 					var twitter_handle = data.results[i].from_user
-					var username = data.results[i].from_user_name
-					var tweet = data.results[i].text
-					var time = data.results[i].created_at
-					var source = data.results[i].source
-					createInterface(img_src,twitter_handle,username,tweet,time,source,"#tweet-container")
 					addNames(twitter_handle)
 					highlightKeywords()
 				}
@@ -40,7 +28,7 @@ $('document').ready(function(){
 	}
 
 	function highlightKeywords(){
-		$('#tweet-container').find('.mid-div').each(function(index,element){ 
+		$('#tweet-container .mid-div').each(function(index,element){ 
 			var text = $(element).find('p').text()
 			var search_string = /(Ruby|ROR)/ig;
 			$(element).find('p').html(
@@ -50,20 +38,21 @@ $('document').ready(function(){
 	}
 
 	function addNames(twitter_handle){
-		exists = false
-		$('#select-name').children().each(function(index,element){
-			if($(element).val() == twitter_handle) 
-				exists = true
-			})
-		if(!exists){
-			$option = $('<option/>')
-			$option.append(twitter_handle)
-			$option.val(twitter_handle)
+		$option = $('<option/>')
+		$option.append(twitter_handle)
+		$option.val(twitter_handle)
+		if($('#select-name:not(:contains(twitter_handle))'))
 			$option.insertAfter('#select-name option:eq(0)')
-		}
 	}
 
-	function createInterface(img_src,twitter_handle,username,tweet,time,source,div){
+	function createInterface(results,div){
+
+		var img_src = results.profile_image_url
+		var twitter_handle = results.from_user
+		var username = results.from_user_name
+		var tweet = results.text
+		var time = results.created_at
+		var source = results.source
 
 		$tweet_div = $('<div/>')
 		$tweet_div.addClass('tweet-div')
@@ -103,14 +92,16 @@ $('document').ready(function(){
 
 	$('#select-name').bind("change",function(){
 		$('div#selected-tweets').html(" ")
+		var tweet_div = 'div#tweet-container .tweet-div'
 		if($(this).val() == "none"){
-			$('div#tweet-container .tweet-div').show()
+			$(tweet_div).show()
 		}else{
 			if($('div#tweet-container .tweet-div[name='+$(this).val()+']').is(':hidden')){
-				$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
-				$('div#tweet-container .tweet-div[name='+$(this).val()+']').show()
+				console.log()
+				$(tweet_div +'[name!='+$(this).val()+']').hide()
+				$(tweet_div +'[name='+$(this).val()+']').show()
 			}else{
-				$('div#tweet-container .tweet-div[name!='+$(this).val()+']').hide()
+				$(tweet_div +'[name!='+$(this).val()+']').hide()
 			}
 		}
 	})
