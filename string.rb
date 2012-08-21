@@ -1,6 +1,6 @@
 class String
    def to_s
-   		self.swapcase
+   	self.swapcase
    end
 end
 

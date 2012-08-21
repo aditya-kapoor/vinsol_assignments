@@ -3,7 +3,9 @@ def factorial(n)
 	for i in (1..n)
 		prod *= i
 	end
-	prod
+	"Fatorial Is: #{prod}" 
 end
 
-puts factorial(5)
+puts "Enter a Number : "
+number = gets.chomp
+puts factorial(number.to_i)
