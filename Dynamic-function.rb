@@ -13,3 +13,4 @@ lines_of_code = gets.chomp
 Function.create_dynamic_function(name,lines_of_code)
 puts "Calling the Dynamically created function"
 puts object.send(name)
+

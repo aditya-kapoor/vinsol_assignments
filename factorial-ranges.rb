@@ -9,3 +9,4 @@ end
 puts "Enter a Number : "
 number = gets.chomp
 puts factorial(number.to_i)
+
