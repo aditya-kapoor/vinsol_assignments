@@ -6,8 +6,8 @@ def countChars(str)
     when 'A'..'Z' then upper_count+=1
     when '0'..'9' then digit_count+=1
     else special_count+=1
-    end
   end
+ end
   puts "Upper Char Count : #{upper_count}"
   puts "Lower Char Count : #{lower_count}"
   puts "Digit Count: #{digit_count}"
