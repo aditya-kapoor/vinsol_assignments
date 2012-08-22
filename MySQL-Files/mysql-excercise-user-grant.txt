@@ -1,6 +1,0 @@
-Create a DB named "vtapp", create a db user named 'vtapp_user' and give him permissions to access vtappDB
-
-create database vtapp;
-use vtapp;
-create user 'vtapp_user'@'localhost' indentified by 'password';
-GRANT ALL PRIVILEGES ON vtapp.* TO 'vtapp_user'@'localhost' WITH GRANT OPTION;
