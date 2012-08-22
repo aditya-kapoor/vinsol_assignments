@@ -1,0 +1,33 @@
+Ans 2.2: 
+No, the Select Query is not optimal. We can optimize it by following these steps.
+a. Using Indexes: This is one of the sure shot ways to improve the performance. The indexes are generally defined on those columns which are frequently used in your queries. The record seeking is much faster as compared to the full table scan first. This speeds up the query execution.
+b. Query Performance Optimization: The Query Performance must be seen and analyses using the EXPLAIN keyword. This word is place in front of the query and would describe the course of execution of the query and the number of rows that would be needed to execute the query and deliver the result set sucesfully.
+c. Adjusting System Variables: The inbuilt system variables also help in the optimization of the queries. The fine tuning of these variable also go in the long way in the optimization of the Select Statements.
+
+Ans 3.1: The commentable_id that is being used in the query must be used as the index
+
+Ans. 4.1:
+
+explain select A1.location from sandwiches as A1 inner join tastes on tastes.filling = A1.filling and tastes.name = "Jones";
++----+-------------+--------+-------+---------------+---------+---------+-------+------+---------------------------------------------+
+| id | select_type | table  | type  | possible_keys | key     | key_len | ref   | rows | Extra                                       |
++----+-------------+--------+-------+---------------+---------+---------+-------+------+---------------------------------------------+
+|  1 | SIMPLE      | tastes | ref   | PRIMARY       | PRIMARY | 42      | const |    1 | Using where; Using index                    |
+|  1 | SIMPLE      | A1     | index | NULL          | PRIMARY | 126     | NULL  |   10 | Using where; Using index; Using join buffer |
++----+-------------+--------+-------+---------------+---------+---------+-------+------+---------------------------------------------+
+2 rows in set (0.00 sec)
+
+The meaning of these columns are:
+id: It is an integer parameter that is assigned by the server starting with value 1. This value would indicate that the order in which the query optimizer decided to process the table. 
+select_type: Since we are using the simple SELECT query, the value of simple is placed in this column
+table: This column shows us the table names or the aliases which are involved in the above query. 
+type: This column indicates the reference type or the join type.
+possible_keys: This column shows us the possible indexes which the MySQL can use to examine the query. In the above case, Primary Key is the best available candidate.
+key_len: Length of the key that is decided by MySQL to use
+ref: Shows the columns which are compared to the index which is selected in the key column 
+rows: The rows column indicates the number of rows MySQL believes it must examine to execute the query. 
+extra: This column gives us the additional information such as use of where filter, join buffer and indexes.
+
+Ans. 4.2
+
+The query with the inner join is an optimal one becoz the nested subquery would require additional table holding and other memory constraints which are not required in the case of the inner join.

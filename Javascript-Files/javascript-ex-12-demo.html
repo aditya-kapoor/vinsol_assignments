@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+   <script type="text/javascript">
+      var count = 30;
+      var start = true;
+      var operators = ['+','-','/','*'];
+      var questions_answered = 0;
+      var score = 0; 
+      var answers = [];
+      var timer_variable;
+      var questions = new Array(20)
+      
+      function startTimer(){
+        generateQuestions();
+        timer_variable = setInterval(function() { setTimer() },1000);
+       }
+      function displayInterface(op1,op2,operator){
+        document.getElementById("op1").innerText = op1;
+        document.getElementById("operator").innerText = operator;
+        document.getElementById("op2").innerText = op2;
+        document.getElementById("answer").value = "";
+        document.getElementById("answer").focus();
+        displayScore();
+       }
+      function generateDisplay(questions_answered){ 
+          op1 = questions[questions_answered][0]
+          op2 = questions[questions_answered][1]
+          operator = questions[questions_answered][2]
+          displayInterface(op1,op2,operator)
+       }
+      function incrementQuestionsAnswered(){ questions_answered+=1 }
+      function getAnswer(op1,op2,operator){
+        var answer;
+        switch (operator)
+        {
+         case '+': return eval(op1+op2);
+         case '-': return eval(op1-op2);
+         case '/': return eval(op1/op2);
+         case '*': return eval(op1*op2);
+         default : alert("Error");
+       }
+       return parseInt(answer);
+        }
+      function generateQuestions() {
+        for(i=0;i<questions.length;++i){
+          questions[i] = new Array(4)
+          var op1 = generateNumber()
+          var op2 = generateNumber()
+          var operator = getOperator()
+          var actual_answer = getAnswer(op1,op2,operator)
+          questions[i][0] = op1
+          questions[i][1] = op2
+          questions[i][2] = operator
+          questions[i][3] = actual_answer      
+        }
+        console.log(questions)
+        //displayInterface(op1,op2,operator,actual_answer)
+        }
+      function refreshTimer(){
+        count = 30;
+        setTimer();
+       }
+      function getOperator() { return operators[parseInt(Math.random() * (4))] }
+      function generateNumber() { return parseInt(Math.random() * (100-1) + 1)}
+      function setTimer(){
+        if(start == true) {
+          generateDisplay(questions_answered)
+          start = false
+        }
+        if(count <= 0)  
+          { counterExpired(); }
+        var minutes= parseInt(count/60);
+        var seconds = parseInt(count%60);
+        var msg = minutes + " : " + seconds;
+        document.getElementById("timer").value = msg;
+        count = count - 1;
+        }
+      function counterExpired(){
+       var user_answer = parseInt(document.getElementById("answer").value);
+       console.log("questions_answered : " + questions_answered);  
+       checkAnswer(questions_answered,user_answer)
+       incrementQuestionsAnswered()
+       if(questions_answered >= 20)
+          allQuestionsAnswered()
+       else{ 
+            generateDisplay(questions_answered)
+            refreshTimer();
+        }
+        }  
+      function recordAnswer(user_answer) { 
+        answers.push(user_answer)
+        console.log("Answers : ",answers)
+      }
+      function evaluateAnswer(){
+        var user_answer = parseInt(document.getElementById("answer").value);
+        console.log("questions_answered : " + questions_answered);
+        checkAnswer(questions_answered,user_answer)
+        incrementQuestionsAnswered()
+        if(questions_answered >= 20)
+          allQuestionsAnswered()
+        else{ 
+          generateDisplay(questions_answered)
+          refreshTimer();
+            }
+        }
+      function checkAnswer(questions_answered,user_answer){
+        if(questions[questions_answered][3] == user_answer) 
+          {   score = score + 1;  }
+        else 
+          {   score = score - 0;  }
+        recordAnswer(user_answer)
+        }
+      function displayScore(){
+        var p = document.getElementById("score");
+        p.innerText = score;
+        console.log("Score Is : ",score)
+       }
+      function clearText(t){
+        t.value = ""
+       }
+      function generateTableHeader(){
+       var thead = document.createElement("thead");
+       var td = document.createElement("td")
+       td.innerText = "Operand 1:";
+       thead.appendChild(td);
+       var td = document.createElement("td")
+       td.innerText = "Operand 2:";
+       thead.appendChild(td);
+       var td = document.createElement("td")
+       td.innerText = "Operand";
+       thead.appendChild(td);
+       var td = document.createElement("td")
+       td.innerText = "Actual Response";
+       thead.appendChild(td);
+       var td = document.createElement("td")
+       td.innerText = "Your Response";    
+        thead.appendChild(td);
+       //console.log(thead);
+       return thead;
+        }
+      function allQuestionsAnswered(){
+        clearInterval(timer_variable);
+        var doc = document.getElementById("main-container");
+        var table = document.createElement("table");
+        table.setAttribute("border","2");
+        table.setAttribute("align","center");
+        var thead = generateTableHeader();
+        table.appendChild(thead);
+        for(i=0;i<20;++i){
+         var tr = table.insertRow(-1); 
+         for(j=0;j<4;++j){ 
+            var td=tr.insertCell(j); 
+            td.innerText = questions[i][j];
+            }
+          var td=tr.insertCell(j);
+          td.innerText = answers[i]
+         if(questions[i][3] == answers[i])
+            tr.setAttribute("style","background-color:green"); 
+         else
+            tr.setAttribute("style","background-color:red");
+         } 
+        //console.log(table);
+        doc.innerHTML = " ";
+        p = document.createElement("p");
+        p.innerText = "Congratulations!!!! Your Score is " + score + " Here are the answers to the questions that you have responded to...";
+        p.setAttribute("align","center");
+        doc.appendChild(p);
+        doc.appendChild(table);
+       }
+   </script>
+   <style type="text/css">
+      div#timer-container{
+        width:500px;
+        align:center;
+        }
+      #timer{
+        width:200px;
+        height:100px;
+        background-color:#C1C2DE;
+        align:center;
+        font-size:36px;
+        text-align:center;
+        font-weight:bold;
+        }
+      .text-boxes{
+        width:50px;
+        }
+   </style>
+   <body onload="startTimer()">
+      <div id="main-container">
+         <div id="first-child">
+            <center>
+               <div id="header">
+                  <div id="timer-container" align="center">
+                     <input type="text" readonly id="timer" />
+                  </div>
+               </div>
+               <div id="paragraphs">
+                  <center>
+                     <h3> Welcome to this time bound Arithmatic Quiz </h3>
+                  </center>
+               </div>
+               <div id="questions">
+                  <table>
+                     <tr>
+                        <td>Operator 1:</td>
+                        <td>
+                           <p id="op1">op1 </p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>Operator :</td>
+                        <td>
+                           <p id="operator">Operator</p>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>Operator 2:</td>
+                        <td>
+                           <p id="op2">op2 </p>
+                           = 
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>Your Answer:</td>
+                        <td><input type="text" id="answer" value="Your Answer Here" onclick="clearText(this)" /></td>
+                     </tr>
+                     <tr>
+                        <td><button id="evaluate-answer" onclick="evaluateAnswer()"> Evaluate Answer </button></td>
+                     </tr>
+                     <tr>
+                        <td>Your Score : </td>
+                        <td>
+                           <p id="score"> </p>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </center>
+         </div>
+      </div>
+   </body>
+</html>
