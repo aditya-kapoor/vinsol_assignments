@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function uncheckAll() {
+                var input = document.getElementsByTagName("input");
+                var len = input.length;
+                for (i = 0; i < len - 1; ++i) {
+                    input[i].checked = false;
+                }
+            }
+
+            function generateAlert(day) {
+                var input = document.getElementsByTagName("input");
+                var len = input.length;
+                var count = 0;
+                input[len - 1].checked = false;
+                for (i = 0; i < len - 1; ++i) {
+                    if (input[i].checked == true) count++;
+                }
+                if (count >= 4) {
+                    var str = " ";
+		    day.checked = false;
+                    for (i = 0; i < len - 1; ++i) {
+                        if (input[i].checked == true) str += input[i].value + "\n";
+                    }
+                    alert("More than 3 selections Not Allowed.\n You have already selected:\n" + str.toString());
+                }
+            }
+        </script>
+    </head>
+    
+    <body>
+        <input type="checkbox" value="Sunday" id="Sunday" onclick="generateAlert(this)"
+        />Sunday
+        <br/>
+        <input type="checkbox" value="Monday" id="Monday" onclick="generateAlert(this)"
+        />Monday
+        <br/>
+        <input type="checkbox" value="Tuesday" id="Tuesday" onclick="generateAlert(this)"
+        />Tuesday
+        <br/>
+        <input type="checkbox" value="Wednesday" id="Wednesday" onclick="generateAlert(this)"
+        />Wednesday
+        <br/>
+        <input type="checkbox" value="Thursday" id="Thursday" onclick="generateAlert(this)"
+        />Thursday
+        <br/>
+        <input type="checkbox" value="Friday" id="Friday" onclick="generateAlert(this)"
+        />Friday
+        <br/>
+        <input type="checkbox" value="Saturday" id="Saturday" onclick="generateAlert(this)"
+        />Saturday
+        <br/>
+        <input type="checkbox" value="None" id="None" onclick="uncheckAll()" />None
+        <br/>
+    </body>
+
+</html>

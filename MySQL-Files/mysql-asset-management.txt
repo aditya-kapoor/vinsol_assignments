@@ -1,0 +1,192 @@
+Database Dump
+
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Aug 08, 2012 at 10:59 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `assets`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE IF NOT EXISTS `employees` (
+  `e_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `post` varchar(20) NOT NULL,
+  PRIMARY KEY (`e_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`e_id`, `name`, `post`) VALUES
+(1, 'Alice', 'Trainee'),
+(2, 'Bob', 'Trainee'),
+(3, 'Chris', 'Trainee'),
+(4, 'Duke', 'Trainee'),
+(5, 'Emily', 'Trainee');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+--------Queries----------
+
+
+
+
+
+
+
+
+
+
+
+
+1. Find the name of the employee who has been alloted the maximum number of assets till date
+
+select name from 
+(
+select user_id, count(peri_id) count 
+from assigned_to 
+group by user_id
+order by count desc
+) as t1
+join
+(
+select count(peri_id) count 
+from assigned_to 
+group by user_id
+order by count desc
+limit 1
+) as t2
+join employees
+on t1.count = t2.count and t1.user_id = employees.e_id
+
+name
+Bob
+
+2. Identify the name of the employee who currently has the maximum number of assets as of today
+
+select name from 
+(
+select user_id, count(peri_id) count
+from assigned_to 
+where end_date = "0000-00-00"
+group by user_id
+order by count(peri_id) desc
+) as t1
+join
+(
+select count(peri_id) count
+from assigned_to 
+where end_date = "0000-00-00"
+group by user_id
+order by count(peri_id) desc
+limit 1
+) as t2
+join employees
+on t1.count = t2.count and t1.user_id = employees.e_id
+
+name
+Bob
+
+
+
+
+
+
+
+
+
+
+
+
+3. Find name and period of all the employees who have used a Laptop - let’s say laptop A - since it was bought by the company.
+
+SELECT E.name, P.name, start_date, end_date
+FROM assigned_to as A inner join employees as E inner join peripherals as P
+on A.user_id = E.e_id and A.peri_id = P.peri_id
+where P.name = "Laptop A"
+
+
+name	name		start_date	end_date
+Alice	Laptop A	2011-01-01	2011-12-31
+Bob	Laptop A	2012-01-01	0000-00-00
+
+4. Find the list of assets that are currently not assigned to anyone hence lying with the asset manage ( HR)
+
+SELECT * FROM `peripherals`
+where date_of_assigning = "0000-00-00" or location = "HR Locker"
+
+peri_id	name
+2	Laptop B
+3	Laptop N1
+4	Laptop N2
+9	Printer B
+
+
+5. An employee say Bob is leaving the company, write a query to get the list of assets he should be returning to the company.
+
+select P.name from 
+employees as E inner join assigned_to as A inner join peripherals as P
+on E.e_id = A.user_id and A.peri_id = P.peri_id
+where E.name = "Bob" and A.end_date = "0000-00-00" and P.location = "private"
+
+name
+Laptop A
+iPhone B
+
+6. Write a query to find assets which are out of warranty
+
+name		warranty
+Laptop A	No
+Laptop B	No
+Laptop N1	No
+Laptop N2	No
+iPhone A	No
+iPhone B	No
+Projector A	Yes
+Printer A	Yes
+Printer B	Yes
+
+7. Return a list of Employee Names who do not have any asset assigned to them.
+
+Select * 
+from employees 
+where e_id not in
+( 
+SELECT distinct(user_id) 
+FROM `assigned_to`
+where end_date = "0000-00-00"
+)
+
+e_id	name	post
+3	Chris	Trainee
+4	Duke	Trainee
+5	Emily	Trainee
+
+

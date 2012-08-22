@@ -1,0 +1,296 @@
+Consider the below schema:
+users(id(PRI), name)
+friends(user_id(Ref:users.id), friend(Ref:users.id) );
+images(id(PRI), image_user(Ref:users.id));
+tags(image_id(Ref:images.id),tagged(Ref:users.id));
+Create the database and Execute the following queries.
+
+Database Dump
+
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jul 30, 2012 at 02:35 PM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `social_network`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `friends`
+--
+
+CREATE TABLE IF NOT EXISTS `friends` (
+  `user_id` varchar(20) NOT NULL,
+  `friend` varchar(20) NOT NULL,
+  KEY `user_id` (`user_id`,`friend`),
+  KEY `friend` (`friend`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `friends`
+--
+
+INSERT INTO `friends` (`user_id`, `friend`) VALUES
+('U1', 'U5'),
+('U2', 'U4'),
+('U2', 'U5'),
+('U3', 'U4'),
+('U3', 'U5'),
+('U4', 'U2'),
+('U4', 'U3'),
+('U4', 'U5'),
+('U5', 'U1'),
+('U5', 'U2'),
+('U5', 'U3'),
+('U5', 'U4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `image_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `user_id`) VALUES
+('I1', 'U1'),
+('I2', 'U1'),
+('I3', 'U1'),
+('I5', 'U1'),
+('I15', 'U2'),
+('I4', 'U2'),
+('I6', 'U2'),
+('I7', 'U2'),
+('I8', 'U2'),
+('I9', 'U2'),
+('I10', 'U3'),
+('I11', 'U4'),
+('I12', 'U4'),
+('I13', 'U5'),
+('I14', 'U5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `image_id` varchar(20) NOT NULL,
+  `tagged` varchar(20) NOT NULL,
+  KEY `image_id` (`image_id`,`tagged`),
+  KEY `tagged` (`tagged`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`image_id`, `tagged`) VALUES
+('I1', 'U1'),
+('I1', 'U2'),
+('I10', 'U3'),
+('I10', 'U5'),
+('I11', 'U1'),
+('I11', 'U2'),
+('I11', 'U3'),
+('I11', 'U5'),
+('I12', 'U1'),
+('I12', 'U5'),
+('I2', 'U1'),
+('I2', 'U2'),
+('I2', 'U3'),
+('I2', 'U4'),
+('I2', 'U5'),
+('I3', 'U1'),
+('I4', 'U2'),
+('I5', 'U3'),
+('I5', 'U5'),
+('I6', 'U2'),
+('I6', 'U3'),
+('I7', 'U3'),
+('I9', 'U2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`) VALUES
+('U1', 'U1'),
+('U2', 'U2'),
+('U3', 'U3'),
+('U4', 'U4'),
+('U5', 'U5');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `friends`
+--
+ALTER TABLE `friends`
+  ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`friend`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tags`
+--
+ALTER TABLE `tags`
+  ADD CONSTRAINT `tags_ibfk_2` FOREIGN KEY (`tagged`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tags_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+1. Find image that has been tagged most no of times.
+
+SELECT t1.ID
+FROM (
+SELECT images.id ID, COUNT( images.id ) Count
+FROM images INNER JOIN tags 
+ON images.id = tags.image_id
+GROUP BY images.id
+ORDER BY `count`  DESC
+) as t1 
+join 
+(
+SELECT images.id ID, COUNT( images.id ) Count
+FROM images INNER JOIN tags 
+ON images.id = tags.image_id
+GROUP BY images.id
+ORDER BY `count`  DESC
+Limit 1
+) as t2
+where t1.count = t2.count
+
+
+id
+I2
+
+2. Find all images belonging to the friends of a particular user say U5
+
+select distinct(images.id) from 
+friends inner join images
+on friends.user_id = images.image_id
+where friends.user_id 
+in
+(
+select friend from 
+friends where friends.user_id = 'U5'
+)
+
+id
+I1
+I2
+I3
+I5
+I15
+I4
+I6
+I7
+I8
+I9
+I10
+I11
+I12
+
+
+3. Find all friends of a particular user (Say, userA) who has tagged him in all of his pics.
+
+select distinct(F.friend) from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+
+friend
+U1
+U3
+U4
+
+4. Find friend of a particular user (Say, userA) who have tagged him most no. of times.
+
+select friend from (
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+ORDER BY `tagcount` DESC
+) as t
+where tagcount in (
+select max(tagcount) from (
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+) as t2
+)
+
+OR
+
+select t1.friend from 
+(
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+ORDER BY `tagcount` DESC
+)as t1
+join
+(
+select F.friend,count(F.friend) tagcount from
+images as I inner join tags as T inner join friends as F
+on I.id = T.image_id and F.friend = I.user_id
+where tagged = 'U5' and F.user_id = 'U5'
+group by F.friend 
+ORDER BY `tagcount` DESC
+Limit 1
+) as t2
+on t1.tagcount = t2.tagcount
+
+
+friend
+U1
+U4

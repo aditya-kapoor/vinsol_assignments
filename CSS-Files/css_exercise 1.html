@@ -1,0 +1,117 @@
+<html>
+<head>
+<style>
+ul {
+  font-family: Georgia;
+  font-size: 18px;
+  list-style: none;
+}
+ul li {
+  display: block;
+  position: relative;
+  float: left;
+}
+li ul { display: none; }
+ul li a {
+font:Georgia;
+font-style:italic;
+font-size:18px;
+color:black;
+background-color:#CFCFCF;
+padding:left;
+margin-left: 2px;
+height: 37px; 
+/*border-bottom:solid 1px #cacaca; */
+padding-left:10px;
+padding-right:10px;
+padding-top:10px;
+display: block;
+text-decoration: none;
+background: #cfcfcf;
+margin-left: 1px;
+}
+ul li a:hover { background: white; }
+li:hover ul {
+  display: block;
+  position: absolute;
+  left: -40px;
+  border-top-style: none;
+}
+li:hover li {
+  width: 200px;
+  background: white;  
+  float: left;
+  font-size: 11px;
+  border:solid 1px #cfcfcf;
+  border-top:none;
+}
+li:hover a { background: white; }
+li:hover li a:hover { background: white; color:red; }
+.links{
+display: block;
+position: relative;
+margin: 0px;
+font: georgia;
+font-style: italic;
+font-size: 14px;
+font-color: #bd0707;
+padding-top: 5px;
+padding-bottom: 5px;
+text-decoration:none;
+}
+li:hover{
+border:solid 1px black;
+/*border-top:none;*/
+}
+</style>
+</head>
+<body>
+<ul id="menu">
+  <li><a href="">Home</a>
+  <ul id="drop-down-menu">
+    <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 2</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+    </ul>
+  </li>
+  <li><a href="">About Us</a>
+    <ul id="drop-down-menu">
+    <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 2</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+    </ul>
+  </li>
+  <li><a href="">Our Services</a>
+    <ul id="drop-down-menu">
+<li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+<li class="horizontal"><a class="links" href="">Example Link 2 </a></li>
+<li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+<li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+<li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+    </ul>
+  </li>
+  <li><a href="">Our Portfolio</a>
+  <ul id="drop-down-menu">
+  <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 2 </a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+  <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+  </ul>
+  </li>
+  <li><a href="">Contact Us</a>
+    <ul id="drop-down-menu">
+    <li class="horizontal"><a class="links" href="">Example Link 1</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 2</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 3</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 4</a></li>
+    <li class="horizontal"><a class="links" href="">Example Link 5</a></li>
+    </ul>
+  </li>
+</ul>
+</body>
+</html>

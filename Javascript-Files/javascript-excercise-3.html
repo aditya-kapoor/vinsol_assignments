@@ -1,0 +1,28 @@
+<html>
+  <head>
+   <script type="text/javascript">
+    function getCredentials(){
+     var greetings = "Hello !! ";
+     var button = "";
+     var firstname = prompt("Please Enter Your First Name");
+     var lastname = prompt("Please Enter Your Last Name");
+     var msg = greetings + firstname + " " + lastname; 
+     var spacePattern = /^\s+(.*?)\s+$/;
+     if(spacePattern.test(firstname) || spacePattern.test(lastname)){
+       //searching for the space strings
+       var msg = "The Input That are Provided By You are Not Acceptable<br>";
+       button = "<button onclick=\"getCredentials()\"> Click Here To Restart The Process</button>";
+     }  
+     if(firstname.length == 0 || lastname.length == 0){
+       //searching for empty strings 
+       var msg = "The Input That are Provided By You are Not Acceptable<br>";
+       button = "<button onclick=\"getCredentials()\"> Click Here To Restart The Process</button>";
+     }
+     document.getElementById("name").innerHTML = msg + button;
+  }
+   </script>
+  </head>
+ <body onload="getCredentials()">
+  <div id="name"></div>
+ </body>
+</html>

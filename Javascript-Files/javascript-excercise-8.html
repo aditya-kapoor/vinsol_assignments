@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <style type="text/css">
+            div#reg_heading {
+                text-align:center;
+                width:500px;
+                height:20px;
+                background-color:green;
+                color:white;
+            }
+            div#main-container {
+                width:500px;
+                height:500px;
+                background-color:grey;
+            }
+            ul {
+                list-style:none;
+            }
+            .label {
+                inline-block;
+                width:150px;
+                text-align:left;
+                float:left;
+                //margin-right:20px;
+                //margin-left:50px;
+                font-weight:bold;
+            }
+            .button {
+                display:block;
+                background-color:green;
+                color:white;
+                font-weight:bold;
+            }
+        </style>
+        <script type="text/javascript">
+            function validateForm() {
+                var email = document.getElementById("email").value;
+                var url = document.getElementById("homepage").value;
+                var email_pattern = /^(?:\w+\.?)*\w+@(?:\w+\.?)*\w+$/
+                var url_pattern = /^((ht|f|sm)tps?:\/\/)?((([A-z]+)\.)*)([A-z]+\.[A-z]{2,4})$/
+		var flag;
+                if (email_pattern.test(email)) flag= true
+                else {
+                    alert("Email Must Be Entered Correctly");
+                    flag = false
+                } 
+		if (url_pattern.test(url)) flag = true
+		else {
+                    alert("URL Should be Entered Correctly");
+                    flag = false
+                }
+		if(flag == true) return true
+		else return false
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div id="main-container">
+            <div id="reg_heading">
+                <p>Registration Form</p>
+            </div>
+            <div id="form">
+                <form action="#" onsubmit="return validateForm()">
+                    <ul>
+                        <li>
+                            <label class="label">Login ID</label>
+                            <input type="text" name="login ID">
+                        </li>
+                        <li>
+                            <label class="label">EMail</label>
+                            <input type="text" id="email" name="email">
+                        </li>
+                        <li>
+                            <label class="label">Name</label>
+                            <input type="text" name="name">
+                        </li>
+                        <li>
+                            <label class="label">Timezone</label>
+                            <select style="width:175px;margin-left:2px;">
+                                <option>GMT</option>
+                                <option>IST</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label class="label">Homepage</label>
+                            <input type="text" id="homepage" name="homepage">
+                        </li>
+                        <li>
+                            <label class="label">About Me:</label>
+                        </li>
+                        <li>
+                            <textarea style="width:450px;" rows="10" cols="10" name="about Me"></textarea>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="notifications">
+                            <label>
+                                <b>Receive Notifications of the Comment</b>
+                            </label>
+                        </li>
+                        <li>
+                            <label style="font-size:10px;">You will be sent an email when someone post comments on your blog or album</label>
+                        </li>
+                        <br />
+                        <br />
+                        <li>
+                            <center>Your Password Will be Sent By Mail:</center>
+                        </li>
+                        <li>
+                            <center>
+                                <button type="Submit" class="button" value="GO!!" />GO!!</center>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>
