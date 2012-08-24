@@ -4,13 +4,14 @@ $('document').ready(function(){
 	var since_id = 235986734821;
 	var timing_variable;
 	var search_string = "Ruby OR ROR"
+	var urlPattern = /(((http|https)\:\/\/)?[A-z0-9\-\.]+\.[A-z]{2,}(\/\S*)?)/
 
 	$('button').click(function(){
-	search_string = $('#query').val()
-	getTweets()
-	setTimer()
-	$('#selected-tweets').fadeOut(1000)
-	$('#select-tweets').show()
+		search_string = $('#query').val()
+		getTweets()
+		setTimer()
+		$('#selected-tweets').fadeOut(1000)
+		$('#select-tweets').show()
 	})
 
 	function setTimer(){
@@ -37,19 +38,26 @@ $('document').ready(function(){
 	function highlightKeywords(){
 		$('#tweet-container .mid-div').each(function(index,element){ 
 			var text = $(element).find('p').text()
-			var search_string = /search_string/ig;
-			$(element).find('p').html(
-			text.replace(search_string,"<span class='highlight'>$1</span>")
-			)
+			var pattern = new RegExp(search_string,"ig");
+			if(pattern.test(text)){
+				foundStr = RegExp.lastMatch
+				$(element).find('p').html(
+					text.replace(foundStr,"<span class='highlight'>"+foundStr+"</span>")
+				)
+			}
 		})
 	}
 
 	function addNames(twitter_handle){
+		var found = false
 		$option = $('<option/>')
 		$option.append(twitter_handle)
 		$option.val(twitter_handle)
-		if($('#select-name:not(:contains(twitter_handle))'))
+		$option.attr("name",twitter_handle)
+		$options = $('#select-name option')
+		if($('#select-name').find('option[name='+twitter_handle+']').length == 0){
 			$option.insertAfter('#select-name option:eq(0)')
+		}
 	}
 
 	function createInterface(results,div){
@@ -80,7 +88,7 @@ $('document').ready(function(){
 		$mid_div = $('<div></div>')
 		$mid_div.addClass("mid-div")
 		$tweet_para = $('<p></p>')
-		$tweet_para.append(tweet)
+		$tweet_para.html(tweet)
 		$mid_div.append($tweet_para)
 		
 		$lower_div = $('<div></div>')
@@ -94,7 +102,6 @@ $('document').ready(function(){
 
 		$tweet_div.append($upper_div).append($mid_div).append($lower_div)
 		$(div).prepend($tweet_div)
-		//$(div).show()
 	}
 
 	$('#select-name').bind("change",function(){
@@ -103,10 +110,9 @@ $('document').ready(function(){
 		if($(this).val() == "none"){
 			$(tweet_div).show()
 		}else{
-			if($('div#tweet-container .tweet-div[name='+$(this).val()+']').is(':hidden')){
-				console.log()
-				$(tweet_div +'[name!='+$(this).val()+']').hide()
-				$(tweet_div +'[name='+$(this).val()+']').show()
+			if($(tweet_div + '[name='+$(this).val()+']').is(':hidden')){
+				$(tweet_div + '[name!='+$(this).val()+']').hide()
+				$(tweet_div + '[name='+$(this).val()+']').show()
 			}else{
 				$(tweet_div +'[name!='+$(this).val()+']').hide()
 			}
