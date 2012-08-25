@@ -3,7 +3,7 @@ require 'date'
 
 class Hotel
   @@hotel_data
-  def initialize
+  def initialize()
     puts "Enter the start date"
     @start_date = gets.chomp
     @start_date = Date.parse(@start_date)

@@ -1,6 +1,6 @@
 def match_pattern(str, pattern)
   occurence_count = 0
-  pattern = Regexp.new(pattern, true)
+  pattern = Regexp.new(pattern,true)
   new_str = str.gsub(pattern) do |match|  
     occurence_count+=1
     "(#{match})" 
