@@ -7,7 +7,7 @@ def factorial(n)
       for i in (1..n)
         prod *= i
       end
-  "Factorial is: #{prod}"
+    "Factorial is: #{prod}"
   end
   rescue
     print "Please Enter a Positive Number"
