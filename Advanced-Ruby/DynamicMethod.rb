@@ -6,7 +6,7 @@ class DynamicMethod < String
     end 
     def initiateProgram
       puts "Welcome to this program...You have to make an instance of this class"
-      puts "The format would be DynamicMethod.new('<param>')"
+      puts "The format would be DynamicMethod.new('<string>')"
       puts "Now Please enter an object"
       object = gets
       puts "Now That you have created object...please select any of the methods below"
