@@ -19,7 +19,7 @@ puts "Enter principal"
 principal = gets.chomp
 puts "Enter Time"
 time = gets.chomp
-i1 = Interest.new(principal.to_i, time.to_i)
-puts i1.generate_SI()
-puts i1.generate_CI()
-puts i1.get_difference()
+interest = Interest.new(principal.to_i, time.to_i)
+puts interest.generate_SI()
+puts interest.generate_CI()
+puts interest.get_difference()
