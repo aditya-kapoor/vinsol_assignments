@@ -1,4 +1,4 @@
-def getHash()
+def get_hash()
   puts "Enter an Input String"
   answer = gets.chomp
   hash = Hash.new(0)
@@ -12,5 +12,5 @@ end
   hash
 end
 
-hash = getHash()
+hash = get_hash()
 puts hash
