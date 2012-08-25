@@ -2,10 +2,10 @@ class Array
   def powers(powers)
     @output = Array.new()
     self.each do |n|
-    @output.push(n ** powers)
-   end
-   print @output
-   puts "\n"
+      @output.push(n ** powers)
+    end
+    print @output
+    puts "\n"
   end
 end
 
