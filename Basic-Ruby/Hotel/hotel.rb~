@@ -39,7 +39,7 @@ class Hotel
   def get_normal_days_on_non_event_days
     Integer(@end_date - @start_date)+1
   end
-  def generate_rates()
+	def generate_rates()
     current_year = Date.today.year
     @@hotel_data.each do |hotel|
       total_bill = 0
