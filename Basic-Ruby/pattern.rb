@@ -1,8 +1,8 @@
-def replaceVowels(str)
+def replace_vowels(str)
   pattern = /[aeiou]/i
   str.gsub!(pattern,'*')
 end
 
 puts "Enter A String"
 str = gets.chomp
-puts replaceVowels(str)
+puts replace_vowels(str)
