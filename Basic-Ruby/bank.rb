@@ -1,7 +1,7 @@
-class Bank
+class Customer
  attr_reader :balance, :name
  @@accnt_no = 0
- def initialize(name,balance=1000)
+ def initialize(name, balance=1000)
     @name = name
     @account_no = @@accnt_no
     @balance = balance
@@ -22,7 +22,7 @@ class Bank
   end
 end
 
-acc1 = Bank.new("Aditya")
+acc1 = Customer.new("Aditya")
 acc1.deposit(1000)
 acc1.withdraw(3100)
 acc1.withdraw(500)
