@@ -48,7 +48,7 @@ class Hotel
             event_start_date,event_end_date = generateEventDates(params)
             if(occurence_of_event?(event_start_date,event_end_date))
               normal_days,event_days = getDays(event_start_date,event_end_date)
-						else
+            else
               normal_days = getNormalDays_on_non_event_days
             end
             puts "Normal Rent Per Day : #{hotel["rate"]}"
