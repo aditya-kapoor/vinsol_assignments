@@ -1,13 +1,10 @@
-def generateFibonacci(num=1000)
-  initial_number1 = 0
-  initial_number2 = 1
-  series_number = 0
-  while (series_number < num) do
-    series_number = initial_number1 + initial_number2
-    initial_number1, initial_number2 = initial_number2, series_number
-    print "#{series_number} "
+def generate_fibonacci(num=1000)
+  initial_number1, initial_number2 = 0, 1
+  while (initial_number1 < num) do
+    yield(initial_number1)
+    initial_number1, initial_number2 = initial_number2, initial_number1 + initial_number2 
   end
   puts "\n"
 end
 
-generateFibonacci()
+generate_fibonacci() {|series_number| print "#{series_number} " }

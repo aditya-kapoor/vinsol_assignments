@@ -1,4 +1,4 @@
-def countChars(str)
+def count_chars(str)
   upper_count = lower_count = digit_count = special_count = 0
   str.each_char do |c|
   case c
@@ -15,5 +15,5 @@ def countChars(str)
 end
 
 puts "Enter a String :"
-str = gets.chomp!
-countChars(str)
+str = gets.chomp
+count_chars(str)

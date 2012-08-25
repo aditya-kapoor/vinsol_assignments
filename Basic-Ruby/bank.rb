@@ -10,14 +10,14 @@ class Customer
  	end
  def deposit(amount)
     @balance += amount
-    puts "Hello #{@name}..Amount of #{amount} has been deposited in your account\nYour balance is #{balance}"
+    puts "Hello #{@name}..Amount of #{amount} has been deposited in your account \nYour balance is #{balance}"
  end
  def withdraw(amount)
   if amount >= @balance
     puts "Invalid Amount of #{amount} Entered"
   else
     @balance -= amount
-    puts "Hello #{@name}..Amount of #{amount} has been withdrawn\nYour balance is #{balance}"
+    puts "Hello #{@name}..Amount of #{amount} has been withdrawn \nYour balance is #{balance}"
     end
   end
 end

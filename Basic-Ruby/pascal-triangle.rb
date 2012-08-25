@@ -16,8 +16,9 @@ end
 puts "Enter a Number to find pascal traingle upto :"
 number = gets.chomp
 
-pascal(Integer(number)) {|i| 0.upto(i) do |j|
-  print (factorial(i) / (factorial(j) * factorial(i-j)))
-  print " "
+pascal(Integer(number)) do |i| 
+  0.upto(i) do |j|
+    print ( factorial(i) / ( factorial(j) * factorial(i-j) ) )
+    print " "
   end
-}
+end

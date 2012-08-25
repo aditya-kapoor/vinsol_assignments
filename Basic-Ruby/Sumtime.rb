@@ -1,4 +1,4 @@
-def Sumtime(arr)
+def sum_time(arr)
   total_seconds, total_minutes, total_hours = 0,0,0
   for i in 0...arr.length do
     hour,min,sec = arr[i].split(":")
@@ -17,17 +17,16 @@ def Sumtime(arr)
   puts "The total time is #{total_hours/24} days and #{total_hours%24}:#{total_minutes}:#{total_seconds}"
 end
 
-def generateTimeString(t1)
+def generate_time_string(t1)
   time_str = t1.strftime("%H:%M:%S")
-  time_str
 end
 
 
-t1 = generateTimeString(Time.new)
-t2 = generateTimeString(Time.new)
-t3 = generateTimeString(Time.new)
-t4 = generateTimeString(Time.new)
+t1 = generate_time_string(Time.new)
+t2 = generate_time_string(Time.new)
+t3 = generate_time_string(Time.new)
+t4 = generate_time_string(Time.new)
 
 arr = [t1,t2,t3,t4]
 
-Sumtime(arr)
+sum_time(arr)

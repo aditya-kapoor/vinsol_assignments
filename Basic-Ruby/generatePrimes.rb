@@ -1,4 +1,4 @@
-def generatePrimes(num)
+def generate_primes(num)
   primes = Array.new()
   primes.push(2)
   primes.push(3)
@@ -19,4 +19,4 @@ end
 
 puts "Enter a Number Up to which we should calculate primes upto : (>2)"
 number = gets.chomp
-puts generatePrimes(Integer(number))
+puts generate_primes(Integer(number))

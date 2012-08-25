@@ -15,9 +15,9 @@ class Hotel
       exit(0)
     end
   end
-  def generateEventDates(params)
+  def generate_event_dates(params)
     current_year = Date.today.year
-    start_date,end_date = "",""
+    start_date, end_date = "", ""
     start_date = params["start"] + "-" + current_year.to_s
     end_date = params["end"] + "-" + current_year.to_s
     if(Date.parse(start_date) <= Date.today)
@@ -31,31 +31,34 @@ class Hotel
     end
     return Date.parse(start_date), Date.parse(end_date)
    end
+  
   def load_hotel_data
     @@hotel_data= JSON.parse(IO.read("hotels.json"))	
   end
-  def getNormalDays_on_non_event_days
+  
+  def get_normal_days_on_non_event_days
     Integer(@end_date - @start_date)+1
   end
-	def generateRates()
+	def generate_rates()
     current_year = Date.today.year
     @@hotel_data.each do |hotel|
       total_bill = 0
       puts "Hotel Name   : #{hotel["Hotel_name"]} "
       if(hotel.has_key?('seasonal_rates'))
         hotel["seasonal_rates"].each do |special_occasion|
-          special_occasion.each do |occasion,params|
-            event_start_date,event_end_date = generateEventDates(params)
-            if(occurence_of_event?(event_start_date,event_end_date))
-              normal_days,event_days = getDays(event_start_date,event_end_date)
+          special_occasion.each do |occasion, params|
+            normal_days, event_days = 0,0
+            event_start_date, event_end_date = generate_event_dates(params)
+            if(occurence_of_event?(event_start_date, event_end_date))
+              normal_days, event_days = get_days(event_start_date, event_end_date)
             else
-              normal_days = getNormalDays_on_non_event_days
+              normal_days = get_normal_days_on_non_event_days()
             end
             puts "Normal Rent Per Day : #{hotel["rate"]}"
             puts "Total Number of Normal Days of Stay: #{normal_days}"
             puts "Total Rent For Normal Days : #{bill1 = normal_days.to_i * hotel["rate"].to_i}"
             puts "Special Rent Per Day for #{occasion}: #{params["rate"]}"
-            puts "Total Number of Event Days of Stay: #{event_days}"
+            puts "Total Number of Days of Stay during #{occasion}: #{event_days}"
             puts "Total Rent For Days during #{occasion} : #{bill2 = event_days.to_i * params["rate"].to_i}"
             total_bill = bill1 + bill2
             break
@@ -68,19 +71,19 @@ class Hotel
           break
          end
       else
-        normal_days = getNormalDays_on_non_event_days
+        normal_days = get_normal_days_on_non_event_days()
         puts "Rent for a Single Day : #{hotel["rate"]}"
         puts "Total Numbers of Days of Stay: #{normal_days}"
         puts "Taxes on your stay : #{hotel["tax"]}%"
         puts "Total Bill for Your Stay: #{total_bill = normal_days.to_i * hotel["rate"].to_i }"
         puts "Grand Total : #{total_bill + (total_bill*hotel["tax"].to_i/100.0)}"
-        "".center(30,"-")
+        print "-"*30
         puts ""
       end
     end
   end
 
-  def occurence_of_event?(start_date,end_date)
+  def occurence_of_event?(start_date, end_date)
     event_range = (start_date..end_date).to_a
     user_range = (@start_date..@end_date).to_a
     status = user_range.any? do |date|
@@ -89,18 +92,18 @@ class Hotel
     status
   end
 
-  def getDays(event_start_date,event_end_date)
+  def get_days(event_start_date, event_end_date)
     event_range = (event_start_date..event_end_date).to_a
     user_stay_range = (@start_date..@end_date).to_a
     event_stay_dates = event_range & user_stay_range
     event_days = event_stay_dates.size
     normal_days = user_stay_range.size - event_days
-    return normal_days,event_days
+    return normal_days, event_days
   end
-  private :getDays, :occurence_of_event?,:generateEventDates
+  private :get_days, :occurence_of_event?,:generate_event_dates
 end
 
 
 h = Hotel.new()
 h.load_hotel_data()
-h.generateRates()
+h.generate_rates()

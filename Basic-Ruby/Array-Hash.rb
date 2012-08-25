@@ -1,12 +1,12 @@
 def calculate_hash(arr)
- hash = Hash.new(0) 
+  hash = Hash.new(0) 
   for i in 0...arr.length
-   len = arr[i].to_s.length
+    len = arr[i].to_s.length
     if(hash.has_key?(len)) 
-     hash[len] << arr[i]
+      hash[len] << arr[i]
     else
-     hash[len] = Array.new()
-     hash[len] << arr[i]
+      hash[len] = Array.new()
+      hash[len] << arr[i]
     end
   end
  puts hash
