@@ -5,6 +5,7 @@ def getHash()
   pattern = /[A-Z]/i
   answer.each_char do |n|
   if(n.match(pattern))
+    n.downcase!
     hash[n] += 1
   end
 end  
