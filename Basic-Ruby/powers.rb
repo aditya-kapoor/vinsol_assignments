@@ -1,12 +1,9 @@
 class Array
   def powers(powers)
-    @output = Array.new()
-    self.each do |n|
-      @output.push(n ** powers)
-    end
-    print @output
-    puts "\n"
+    output_array = []
+    self.inject(powers) { |a,b| output_array.push(b**powers) }
+    output_array
   end
 end
 
-[1,2,3,4,5,6,7].powers(3)
+puts [1,2,3,4,5,6,7].powers(3)

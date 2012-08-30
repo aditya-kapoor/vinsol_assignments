@@ -24,6 +24,10 @@ div.tweet-div{
 	background-color: orange;
 }
 
+#select-name{
+	position: fixed
+}
+
 div.upper-div{
 	width:inherit;
 	display: inline-block;

@@ -11,7 +11,7 @@ $('document').ready(function(){
 		getTweets()
 		setTimer()
 		$('#selected-tweets').fadeOut(1000)
-		$('#select-tweets').show()
+		$('#select-tweets').show(1500)
 	})
 
 	function setTimer(){
