@@ -9,8 +9,10 @@ def calculate_hash(arr)
       hash[len] << arr[i]
     end
   end
- puts hash
+  hash
 end
 
-arr = ['abc','def',1234,234,'abcd','x','mnop',5,'zZzZ']
-calculate_hash(arr)
+if(__FILE__ == $0)
+  arr = ['abc','def',1234,234,'abcd','x','mnop',5,'zZzZ']
+  calculate_hash(arr)
+end
