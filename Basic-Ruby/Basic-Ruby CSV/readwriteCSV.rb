@@ -6,12 +6,8 @@ def readFile()
       name = entries_per_line[0]
       empId = entries_per_line[1]
       particular_designation = entries_per_line[2]
-      if(designations.has_key?(particular_designation))
-        designations[particular_designation] << "#{name} (EmpId : #{empId}) "
-      else
-        designations[particular_designation] = Array.new()
-        designations[particular_designation] << "#{name} (EmpId : #{empId}) "
-      end
+      designations[particular_designation] = designations.fetch(particular_designation, [])
+      designations[particular_designation].push("#{name} (EmpId : #{empId})")
     end
   end
   writeFile(designations)
