@@ -1,15 +1,15 @@
 require 'date'
 
-start_date = "28-12"
-end_date = "1-1"
-year = Date.today.year
-
-if(Date.parse(start_date+"-"+year.to_s).month == 12)
-  if(Date.parse(end_date+"-"+year.to_s).month != 12)
-    end_date = end_date + "-" + (year+1).to_s
+def Date.get_formatted_date(date)
+  current_year = Date.today.year
+  temp_date = date + "-" + current_year.to_s
+  if( Date.parse(temp_date) <= Date.today )
+    temp_date = date + "-" + (current_year + 1).to_s
   end
+  Date.parse(temp_date)
 end
 
-puts Date.parse(start_date)
-puts Date.parse(end_date)
-
+puts Date.get_formatted_date("28-12")
+puts Date.get_formatted_date("01-05")
+puts Date.get_formatted_date("01-06")
+puts Date.get_formatted_date("31-07")
