@@ -14,9 +14,9 @@ module MyObjectStore
     end
     def validate_presence_of(*args)
       $args_methods = args
-      def_args
+      def_args()
     end
-    def collect
+    def collect()
       puts "The Globally Saved Objects are : "
       $global_objects.each do |obj|
         puts "Object Number #{$global_objects.index(obj)+1}"
@@ -25,10 +25,10 @@ module MyObjectStore
         end
       end
     end
-    def count
+    def count()
       puts "The Number of Saved Objects Are : #{$global_objects.length}"
     end
-    def def_args
+    def def_args()
       metaclass = class << self; self ; end
       metaclass.instance_eval do 
         $args_methods.each do |arg| 
@@ -47,7 +47,7 @@ module MyObjectStore
     end
   end
  
-  def save
+  def save()
     if(self.class.method_defined?(:validate))
       if(self.validate)
         if(save_object)
@@ -59,14 +59,14 @@ module MyObjectStore
         puts "The Object would not be saved"
       end
     else
-      if(save_object)
+      if(save_object())
         $global_objects<<self
       else
         puts "There was an error"
       end
     end
   end
-  def save_object
+  def save_object()
     $args_methods.each do |arg|
       if(self.instance_variable_get("@#{arg}").nil?)
         puts "The object should have the value of #{arg}"
