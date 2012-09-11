@@ -1,0 +1,218 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <title>JQuery Powered Keyboard</title>
+  <script type="text/javascript" src="jquery-latest.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+</head>
+
+<body>
+  <div id="main-container" align="center">
+    <div id="text-screen">
+      <textarea class="screen" placeholder="Write some text here using keyboard..."></textarea>
+    </div>
+    <div id="keyboard">
+      <ul>
+        <li class="button symbol">
+            <span class="on">`</span>
+            <span class="off">~</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">1</span>
+            <span class="off">!</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">2</span>
+            <span class="off">@</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">3</span>
+            <span class="off">#</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">4</span>
+            <span class="off">$</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">5</span>
+            <span class="off">%</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">6</span>
+            <span class="off">^</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">7</span>
+            <span class="off">&</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">8</span>
+            <span class="off">*</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">9</span>
+            <span class="off">(</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">0</span>
+            <span class="off">)</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">-</span>
+            <span class="off">_</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">=</span>
+            <span class="off">+</span>
+        </li>
+        <li class="delete-button">delete</li>
+        <li class="tab-button">tab</li>
+        <li class="button letter">
+            <span class="on">q</span>
+            <span class="off">Q</span>
+        </li>
+        <li class="button letter">
+            <span class="on">w</span>
+            <span class="off">W</span>
+        </li>
+        <li class="button letter">
+            <span class="on">e</span>
+            <span class="off">E</span>
+        </li>
+        <li class="button letter">
+            <span class="on">r</span>
+            <span class="off">R</span>
+        </li>
+        <li class="button letter">
+            <span class="on">t</span>
+            <span class="off">T</span>
+        </li>
+        <li class="button letter">
+            <span class="on">y</span>
+            <span class="off">Y</span>
+        </li>
+        <li class="button letter">
+            <span class="on">u</span>
+            <span class="off">U</span>
+        </li>
+        <li class="button letter">
+            <span class="on">i</span>
+            <span class="off">I</span>
+        </li>
+        <li class="button letter">
+            <span class="on">o</span>
+            <span class="off">O</span>
+        </li>
+        <li class="button letter">
+            <span class="on">p</span>
+            <span class="off">P</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">[</span>
+            <span class="off">{</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">]</span>
+            <span class="off">}</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">\</span>
+            <span class="off">|</span>
+        </li>
+        <li class="caps-button">caps lock</li>
+        <li class="button letter">
+            <span class="on">a</span>
+            <span class="off">A</span>
+        </li>
+        <li class="button letter">
+            <span class="on">s</span>
+            <span class="off">S</span>
+        </li>
+        <li class="button letter">
+            <span class="on">d</span>
+            <span class="off">D</span>
+        </li>
+        <li class="button letter">
+            <span class="on">f</span>
+            <span class="off">F</span>
+        </li>
+        <li class="button letter">
+            <span class="on">g</span>
+            <span class="off">G</span>
+        </li>
+        <li class="button letter">
+            <span class="on">h</span>
+            <span class="off">H</span>
+        </li>
+        <li class="button letter">
+            <span class="on">j</span>
+            <span class="off">J</span>
+        </li>
+        <li class="button letter">
+            <span class="on">k</span>
+            <span class="off">K</span>
+        </li>
+        <li class="button letter">
+            <span class="on">l</span>
+            <span class="off">L</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">;</span>
+            <span class="off">:</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">'</span>
+            <span class="off">"</span>
+        </li>
+        <li class="enter-button">enter</li>
+        <li class="shift-button">Shift</li>
+        <li class="button letter">
+            <span class="on">z</span>
+            <span class="off">Z</span>
+        </li>
+        <li class="button letter">
+            <span class="on">x</span>
+            <span class="off">X</span>
+        </li>
+        <li class="button letter">
+            <span class="on">c</span>
+            <span class="off">C</span>
+        </li>
+        <li class="button letter">
+            <span class="on">v</span>
+            <span class="off">V</span>
+        </li>
+        <li class="button letter">
+            <span class="on">b</span>
+            <span class="off">B</span>
+        </li>
+        <li class="button letter">
+            <span class="on">n</span>
+            <span class="off">N</span>
+        </li>
+        <li class="button letter">
+            <span class="on">m</span>
+            <span class="off">M</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">,</span>
+            <span class="off"><</span>
+        </li>
+        <li class="button symbol">
+            <span class="on">.</span>
+            <span class="off">></span>
+        </li>
+        <li class="button symbol">
+            <span class="on">/</span>
+            <span class="off">?</span>
+        </li>
+        <li class="shift-button">Shift</li>
+        <li class="button">Ctrl</li>
+        <li class="button">Win</li>
+        <li class="button">Alt</li>
+        <li class="space-button">&nbsp;</li>
+        <li class="button">Alt</li>
+        <li class="button">Rt-Clk</li>
+        <li class="button">Ctrl</li>
+    </div>
+  </div>

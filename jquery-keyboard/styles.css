@@ -1,0 +1,55 @@
+textarea {
+  color: grey;
+  font-weight: bold;
+  font-size: 24;
+  width: 500px;
+  height: 200px;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li{
+  display: inline-block;
+}
+
+li:hover{
+  cursor: pointer;
+}
+
+div#keyboard {
+  width: 950px;
+}
+.button, .delete-button, .space-button, .shift-button, .caps-button, .enter-button, .tab-button {
+  height: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  width: 55px;
+}
+.delete-button{
+  width: 75px;
+}
+.space-button{
+  width: 500px;
+  }
+.shift-button{
+  width: 125px;
+}
+.caps-button {
+  width: 95px;
+}
+.enter-button{
+  width: 95px;
+}
+.tab-button {
+  width: 75px;
+}
+
+.off{
+  display: none;
+}
