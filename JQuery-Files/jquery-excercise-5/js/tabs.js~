@@ -26,9 +26,8 @@
 	   $($sibling_id).hide()
 	   $($id).show()
 	});
+      console.log("Showing the First Block")
       $list.children(':first-child').addClass("current")
       $('div#blog').show()
-     });
-    //console.log("Showing the First Block")
-    
-});
+     });    
+  });

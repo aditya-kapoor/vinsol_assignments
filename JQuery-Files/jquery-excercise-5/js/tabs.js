@@ -17,15 +17,15 @@
 
      console.log("Binding Events")
      $list.children().each(function(index){ 
-	$(this).bind('click',function(){
-	   $(this).addClass("current")
-	   $(this).siblings().attr("class","")
-	   var $id = 'div#'+$(this).text().toLowerCase();
-	   var $sibling_id = 'div#' + $(this).siblings().text().toLowerCase();
-           console.log($sibling_id)
-	   $($sibling_id).hide()
-	   $($id).show()
-	});
+	    $(this).bind('click',function(){
+	      $(this).addClass("current")
+	      $(this).siblings().attr("class","")
+	      var $id = 'div#'+$(this).text().toLowerCase();
+	      var $sibling_id = 'div#' + $(this).siblings().text().toLowerCase();
+        console.log($sibling_id)
+	      $($sibling_id).hide()
+	      $($id).show()
+	    });
       console.log("Showing the First Block")
       $list.children(':first-child').addClass("current")
       $('div#blog').show()

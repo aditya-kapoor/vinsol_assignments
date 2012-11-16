@@ -53,6 +53,12 @@ $('document').ready(function(){
     str = str.substr(0, len-1)
     $('.screen').html(str)
   })
+  
+  $('.space-button').click(function(){
+    var str = $('.screen').html()
+    str+= " "
+    $('.screen').html(str)
+  })
 
   $('li').hover(
     function () { 

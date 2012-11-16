@@ -1,0 +1,9 @@
+mkdir google
+mkdir yahoo
+cd yahoo
+vi conf.txt
+
+# enter some data in the file 
+
+cd ../google
+ln -s ../yahoo/conf.txt linked_file

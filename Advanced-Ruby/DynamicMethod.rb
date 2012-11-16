@@ -2,8 +2,9 @@ class DynamicMethod < String
 
   instance_eval do
     def getMethods
-      (DynamicMethod.new("car").methods - String.new.methods)
+      (DynamicMethod.new("").methods - String.new.methods)
     end 
+
     def initiateProgram
       puts "Welcome to this program...You have to make an instance of this class"
       puts "The format would be DynamicMethod.new('<string>')"
@@ -35,4 +36,4 @@ class DynamicMethod < String
   end
 end
 
-DynamicMethod.initiateProgram
+# DynamicMethod.initiateProgram
