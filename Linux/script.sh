@@ -1,0 +1,1 @@
+sed "s/\swww\./ http\:\/\/www\./g" company
