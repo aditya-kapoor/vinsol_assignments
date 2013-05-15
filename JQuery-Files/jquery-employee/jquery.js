@@ -1,14 +1,14 @@
 $('document').ready(function(){
 
 var employees = [
-{"name":"Akhil","projects_ror":"none","projects_jsq":"P1,P2","projects_and":"none","projects_ios":"none"},
-{"name":"HK","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"Alok","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"Aayush","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"Waseem","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"Akshay","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"Nishant","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
-{"name":"KD","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"}
+	{"name":"Akhil","projects_ror":"none","projects_jsq":"P1,P2","projects_and":"none","projects_ios":"none"},
+	{"name":"HK","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"Alok","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"Aayush","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"Waseem","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"Akshay","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"Nishant","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"},
+	{"name":"KD","projects_ror":"none","projects_jsq":"none","projects_and":"none","projects_ios":"none"}
 ];
 	addEmployees()
 	var add = "add.png"
@@ -130,7 +130,7 @@ var employees = [
 
 	$('ul.added_emp').delegate("li.ui-draggable","hover", function(event) {
 		$(this).find('img').toggle (event.type === "mouseenter")
-		}) 
+	}) 
 	
 	$('.image-added').click(function(){
 		$(this).attr("src",$(this).attr("src") == add ? minus : add)
@@ -138,15 +138,14 @@ var employees = [
 	})
 
 	$('img.remove-added').live("click",function() {
-			$parent_id = $(this).parent().attr("id")
-			console.log($parent_id)
-			if(confirm("Do You Want to Delete This Row??")){
-				$(this).parent().remove()
-				$section = getSection($parent_id) /* To determine whether the to-do section is in Adnroid, ROR or somewhere else */
-				$id = getId($parent_id) /* Get the appended count or id number which would select the particular to-do element */
-				$('#to-do-'+$section+"-"+$id).remove()
-				count--
-			}
+		$parent_id = $(this).parent().attr("id")
+		console.log($parent_id)
+		if(confirm("Do You Want to Delete This Row??")){
+			$(this).parent().remove()
+			$section = getSection($parent_id) /* To determine whether the to-do section is in Adnroid, ROR or somewhere else */
+			$id = getId($parent_id) /* Get the appended count or id number which would select the particular to-do element */
+			$('#to-do-'+$section+"-"+$id).remove()
+			count--
+		}
 	})
-
 })

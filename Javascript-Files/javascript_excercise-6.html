@@ -32,47 +32,45 @@
       	padding-top:5px;
       	}
     </style>
-
-  <script type="text/javascript">
-  function processCountries(bullet, target){
-		console.log(bullet)
-		console.log(target)
-		bullet = document.getElementById(bullet)
-		target = document.getElementById(target)
-		var options = bullet.options
-		for(i=options.length-1;i>=0;--i) {
-			var option_tag = document.createElement("option")
-			if(options[i].selected) {
-				option_tag.text = options[i].text
-				try { bullet.remove(i,null) } catch(e) { target.remove(i) }
-				try { target.add(option_tag,bullet[null])} catch(e) { target.add(option_tag,null) }	
-		}
-	}
-}
-</script>
-</head>
-<body>
-<div id="main-container">
-	<div id="main-countries">
-<select style="width:200px;height:200px;" id="master-countries" multiple>
-<option> India </option>
-<option> Pakistan </option>
-<option> Bangladesh </option>
-<option> Sri Lanka </option>
-<option> Nepal </option>
-<option> Bhutan </option>
-<option> Myanmar </option>
-</select>
-	</div>
-	<div id="buttons">
+    <script type="text/javascript">
+      function processCountries(bullet, target){
+          console.log(bullet)
+      		console.log(target)
+      		bullet = document.getElementById(bullet)
+      		target = document.getElementById(target)
+      		var options = bullet.options
+      		for(i=options.length-1;i>=0;--i) {
+      			var option_tag = document.createElement("option")
+      			if(options[i].selected) {
+      				option_tag.text = options[i].text
+      				try { bullet.remove(i,null) } catch(e) { target.remove(i) }
+      				try { target.add(option_tag,bullet[null])} catch(e) { target.add(option_tag,null) }	
+      		  }
+      	  }
+        }
+    </script>
+  </head>
+  <body>
+    <div id="main-container">
+  	  <div id="main-countries">
+        <select style="width:200px;height:200px;" id="master-countries" multiple>
+          <option> India </option>
+          <option> Pakistan </option>
+          <option> Bangladesh </option>
+          <option> Sri Lanka </option>
+          <option> Nepal </option>
+          <option> Bhutan </option>
+          <option> Myanmar </option>
+        </select>
+      </div>
+      <div id="buttons">
         <button type="button" class="button" id="add" onclick="processCountries('master-countries','selected-countries')">Add -->></button>
         <button type="button" class="button" id="remove" onclick="processCountries('selected-countries','master-countries')"><-- Remove</button>
-        </div>
-	<div id="select-countries">
-	<select style="width:200px;height:200px;" id="selected-countries" multiple>
-	</select>
-	</div>
-</div>
-</body>
+      </div>
+	    <div id="select-countries">
+	      <select style="width:200px;height:200px;" id="selected-countries" multiple></select>
+	    </div>
+    </div>
+  </body>
 </html>
 

@@ -5,8 +5,7 @@
    var count = 0;
    var no_of_cells = 3; 
    function addLinks(t){
-	   /* This function would create the links in the third cell of the table row
-            The links would be displayed as (Edit/Delete) */
+	   /* This function would create the links in the third cell of the table row. The links would be displayed as (Edit/Delete) */
 	   var link_edit = document.createElement("a");
 	   var link_edit_text = document.createTextNode("Edit");
 	   link_edit.setAttribute("href","#");
@@ -39,8 +38,7 @@
 	   var no_of_cells = node.cells.length;
 	   for(i=0; i<no_of_cells-1; ++i){
 	   /*
-	   Temporary variables are used in this loop so that we can set up the first two cells of teh table
-	   If the requirement increases in the future one can easily extend the loop till the last cell which is assumed to have been kept 		   reserved for the Links and the button
+	   Temporary variables are used in this loop so that we can set up the first two cells of teh table. If the requirement increases in the future one can easily extend the loop till the last cell which is assumed to have been kept reserved for the Links and the button
 	   */
 	   var temp_input= document.createElement("input");
 	   var temp_value = cells[i].firstChild.innerText;

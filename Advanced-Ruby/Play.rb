@@ -2,6 +2,7 @@ module MyObjectStore
   module ClassMethods
     $args_methods = []
     $global_objects = []
+    
     def attr_accessor(*args)
       args.each do |arg|
         define_method(arg.to_sym) do 
@@ -12,10 +13,12 @@ module MyObjectStore
         end
       end
     end
+    
     def validate_presence_of(*args)
       $args_methods = args
       def_args()
     end
+    
     def collect()
       puts "The Globally Saved Objects are : "
       $global_objects.each do |obj|
@@ -25,9 +28,11 @@ module MyObjectStore
         end
       end
     end
+    
     def count()
       puts "The Number of Saved Objects Are : #{$global_objects.length}"
     end
+
     def def_args()
       metaclass = class << self; self ; end
       metaclass.instance_eval do 
@@ -66,6 +71,7 @@ module MyObjectStore
       end
     end
   end
+
   def save_object()
     $args_methods.each do |arg|
       if(self.instance_variable_get("@#{arg}").nil?)
